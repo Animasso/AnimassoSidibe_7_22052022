@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Lato&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/c6129455e1.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="index">
+      <img src="/assets/Les petits plats logo.png" alt="logo" class="logo" />
+      <div class="input-group">
+        <div class="form-outline">
+          <input
+            id="search-input"
+            type="search"
+            class="form-control"
+            placeholder="Rechercher une recette"
+          />
+          <button id="search-button" type="submit" class="btnSearch">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="tag">
+      <span class="tagSelect"
+        >Coco<i class="fa-regular fa-circle-xmark"></i
+      ></span>
+    </div>
+
+    <div id="dropdownMenus">
+      <div class="dropdown">
+        <div class="select">
+          <span class="selected">ingrédients</span>
+          <div class="caret">
+            <img src="./assets/chevron-down.svg" alt="chevrondown" />
+          </div>
+        </div>
+        <ul class="menuIngredients menus">
+          <input
+            type="search"
+            name="search-ingredients"
+            id="search-ingredients"
+            placeholder="Rechercher un ingredient"
+          />
+          <li>chocolat</li>
+          <li>thé</li>
+          <li>café</li>
+          <li>Vanille</li>
+          <li class="active">ingredients</li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <div class="select">
+          <span class="selected">Appareils</span>
+          <div class="caret">
+            <img src="/assets/chevron-down.svg" alt="chevron-down" />
+          </div>
+        </div>
+        <ul class="menuAppareils menus">
+          <input
+            type="search"
+            name="search-appareils"
+            id="search-appareils"
+            placeholder="Rechercher un appareils"
+          />
+          <li>Cookeo</li>
+          <li>Blender</li>
+          <li>Batteur</li>
+          <li>Mixeur</li>
+          <li class="active">Appareils</li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <div class="select">
+          <span class="selected">Ustensiles</span>
+          <div class="caret">
+            <img src="/assets/chevron-down.svg" alt="chevron-down" />
+          </div>
+        </div>
+        <ul class="menuUstensiles menus">
+          <input
+            type="search"
+            name="search-ustensiles"
+            id="search-ustensiles"
+            placeholder="Rechercher un Ustensiles"
+          />
+          <li>Fouet</li>
+          <li>couteau</li>
+          <li>Marise</li>
+          <li>Spatule</li>
+          <li class="active">Ustensiles</li>
+        </ul>
+      </div>
+    </div>
+
+    <main class="all-recepices">
+      <div class="recette">
+        <div class="recette-img"></div>
+        <div class="recette-card">
+          <div class="title-time">
+            <p class="title">Limonade de Coco</p>
+            <p class="minute"><i class="fa-regular fa-clock"></i>10min</p>
+          </div>
+          <div class="ingredients-instructions">
+            <div class="ingredients">
+              <li>lait de coco 400ml</li>
+              <li>jus de citron</li>
+              <li>creme de coco</li>
+              <li>sucre 20g</li>
+              <li>Glacon 2</li>
+            </div>
+            <div class="instructions">
+              <p class="instruction-lign">
+                Mettre les cube de glaces à votre gout dans le blender ajouter
+                le lait la creme de cocole citron et le sucre
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recette">
+        <div class="recette-img"></div>
+        <div class="recette-card">
+          <div class="title-time">
+            <p class="title">Limonade de Coco</p>
+            <p class="minute"><i class="fa-regular fa-clock"></i>10min</p>
+          </div>
+          <div class="ingredients-instructions">
+            <div class="ingredients">
+              <li>lait de coco 400ml</li>
+              <li>jus de citron</li>
+              <li>creme de coco</li>
+              <li>sucre 20g</li>
+              <li>Glacon 2</li>
+            </div>
+            <div class="instructions">
+              <p class="instruction-lign">
+                Mettre les cube de glaces à votre gout dans le blender ajouter
+                le lait la creme de cocole citron et le sucre
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recette">
+        <div class="recette-img"></div>
+        <div class="recette-card">
+          <div class="title-time">
+            <p class="title">Limonade de Coco</p>
+            <p class="minute"><i class="fa-regular fa-clock"></i>10min</p>
+          </div>
+          <div class="ingredients-instructions">
+            <div class="ingredients">
+              <li>lait de coco 400ml</li>
+              <li>jus de citron</li>
+              <li>creme de coco</li>
+              <li>sucre 20g</li>
+              <li>Glacon 2</li>
+            </div>
+            <div class="instructions">
+              <p class="instruction-lign">
+                Mettre les cube de glaces à votre gout dans le blender ajouter
+                le lait la creme de cocole citron et le sucre
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/script/dropdown.js"></script>
+  </body>
+</html>

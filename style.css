@@ -1,0 +1,279 @@
+body {
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+}
+.index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 46px;
+}
+
+.index img {
+  width: 268px;
+  top: 46px;
+}
+.tag {
+  background-color: #3282f7;
+  height: 37px;
+  width: 107px;
+  position: relative;
+  left: 7%;
+  border-radius: 5px;
+  display: flex;
+  margin-top: 20px;
+
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+.fa-regular fa-circle-xmark {
+  margin-left: 5px;
+}
+.form-outline {
+  display: flex;
+  border-radius: 5px;
+}
+#search-input {
+  width: 1248px;
+  height: 69px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #e7e7e7;
+  border: none;
+  color: #000000;
+  font-family: "Lato", sans-serif;
+}
+.input-group {
+  display: flex;
+}
+.btnSearch {
+  border: none;
+  margin: 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background-color: #e7e7e7;
+  border-radius: 0 5px 5px 0;
+  color: black;
+  border: none;
+}
+.fas fa-search {
+  width: 32px;
+  height: 32px;
+}
+.dropdown {
+  height: 69px;
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #ffffff;
+  margin-right: 20px;
+}
+.dropdown:nth-child(1) {
+  background: #3282f7;
+}
+.dropdown:nth-child(2) {
+  background: #68d9a4;
+}
+.dropdown:nth-child(3) {
+  background: #ed6454;
+}
+#dropdownMenus {
+  width: 600px;
+  display: flex;
+  margin-top: 1em;
+  position: relative;
+  left: 7%;
+}
+.select {
+  display: flex;
+  cursor: pointer;
+}
+.selected {
+  height: 22px;
+  width: 90px;
+  left: 15px;
+  top: 23px;
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.caret {
+  margin-left: 10px;
+}
+.caret-rotate {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+.menus {
+  list-style: none;
+  padding: 0.2em 0.5em;
+  border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -ms-border-radius: 0.5em;
+  -o-border-radius: 0.5em;
+  position: absolute;
+  display: none;
+  opacity: 0;
+  cursor: pointer;
+}
+.menuIngredients {
+  background-color: #3282f7;
+  left: 0;
+  top: 54px;
+}
+.menuAppareils {
+  background-color: #68d9a4;
+  left: 190px;
+  top: 54px;
+}
+.menuUstensiles {
+  background-color: #ed6454;
+  left: 380px;
+  top: 54px;
+}
+.menus-open {
+  display: block;
+  opacity: 1;
+  height: 397px;
+  width: 667px;
+  border-radius: 5px;
+  position: absolute;
+  padding-left: 20px;
+  z-index: 1;
+}
+.all-recepices {
+  margin-top: 20px;
+  width: 1248px;
+  display: flex;
+  gap: 5em;
+  position: relative;
+  left: 7%;
+}
+.recette {
+  height: 364px;
+  width: 380px;
+  left: 0px;
+  top: 0px;
+}
+.recette-img {
+  height: 178px;
+  width: 380px;
+  left: 0px;
+  top: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #c7bebe;
+}
+.recette-card {
+  background: #e7e7e7;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.title-time {
+  display: flex;
+  justify-content: space-between;
+}
+.ingredients-instructions {
+  display: flex;
+  justify-content: space-between;
+}
+.fa-regular.fa-clock::before {
+  margin-right: 3px;
+}
+.fa-regular.fa-circle-xmark::before {
+  margin-left: 5px;
+}
+.ingredients {
+  height: 105px;
+  width: 171px;
+  left: 20px;
+  top: 240px;
+  list-style: none;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.input-ingredients {
+  display: none;
+  flex-direction: column;
+}
+
+#search-ingredients,
+#search-appareils,
+#search-ustensiles {
+  border: none;
+  height: 22px;
+  width: 195px;
+  left: 19px;
+  top: 22px;
+  opacity: 1;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  color: #ffffff !important;
+  padding: 1em;
+}
+
+#search-ingredients {
+  background-color: #3282f7;
+}
+
+#search-appareils {
+  background-color: #68d9a4;
+}
+#search-ustensiles {
+  background-color: #ed6454;
+}
+.instruction-lign {
+  font-family: "Roboto", sans-serif;
+  height: 109px;
+  width: 171px;
+  left: 191px;
+  top: 240px;
+  font-size: 12px;
+  font-weight: 700;
+}
+@media screen and (max-width: 768px) {
+  .input-group {
+    width: 700px;
+  }
+  .form-outline {
+    width: 700px;
+  }
+  #search-input {
+    width: 700px;
+  }
+  .recette {
+    width: 300px;
+    left: 0px;
+    top: 0px;
+  }
+  .all-recepices {
+    width: 690px;
+    gap: 2em;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .recette-img {
+    height: 140px;
+    width: 300px;
+  }
+  .menus-open {
+    width: 200px;
+  }
+}
