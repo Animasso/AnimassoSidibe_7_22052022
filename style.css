@@ -7,22 +7,29 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 46px;
+  border: 3px blue solid;
+  width: 100%;
 }
 
 .index img {
   width: 268px;
   top: 46px;
 }
+.tags {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  border: 3px green solid;
+}
 .tag {
   background-color: #3282f7;
   height: 37px;
-  width: 107px;
   position: relative;
-  left: 7%;
+  left: 8.5%;
   border-radius: 5px;
   display: flex;
   margin-top: 20px;
-
+  width: 107px;
   color: #ffffff;
   justify-content: center;
   align-items: center;
@@ -30,12 +37,9 @@ body {
 .fa-regular fa-circle-xmark {
   margin-left: 5px;
 }
-.form-outline {
-  display: flex;
-  border-radius: 5px;
-}
+
 #search-input {
-  width: 1248px;
+  width: 100%;
   height: 69px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -46,6 +50,7 @@ body {
 }
 .input-group {
   display: flex;
+  width: 83%;
 }
 .btnSearch {
   border: none;
@@ -70,6 +75,16 @@ body {
   border-radius: 5px;
   color: #ffffff;
   margin-right: 20px;
+  position: relative;
+  left: 8.5%;
+  transition: transform 0.1s;
+  -webkit-transition: transform 0.1s;
+  -moz-transition: transform 0.1s;
+  -ms-transition: transform 0.1s;
+  -o-transition: transform 0.1s;
+}
+.dropdown-active {
+  width: 660px;
 }
 .dropdown:nth-child(1) {
   background: #3282f7;
@@ -81,32 +96,67 @@ body {
   background: #ed6454;
 }
 #dropdownMenus {
-  width: 600px;
+  width: 100%;
   display: flex;
   margin-top: 1em;
-  position: relative;
-  left: 7%;
+  border: 3px black solid;
 }
-.select {
-  display: flex;
-  cursor: pointer;
+/*input[type="text"]#search-ingredients {
+  display: block;
+}*/
+#ingredients-search {
+  width: 100%;
+  background: #3282f7;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  outline: none;
 }
-.selected {
+#appareils-search {
+  width: 100%;
+  background: #68d9a4;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  outline: none;
+}
+#ustensiles-search {
+  width: 100%;
+  background: #ed6454;
+  border: none;
+  color: white;
+  margin-left: 10px;
+  outline: none;
+}
+#ingredients-search::placeholder,
+#appareils-search::placeholder,
+#ustensiles-search::placeholder {
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
   height: 22px;
-  width: 90px;
-  left: 15px;
+  width: 100%;
+
   top: 23px;
-  font-family: Lato;
   font-size: 18px;
   font-weight: 700;
   line-height: 22px;
   letter-spacing: 0em;
-  text-align: center;
+
+  border: none;
 }
-.caret {
-  margin-left: 10px;
+
+.chevron-ingredients,
+.chevron-appareils,
+.chevron-ustensiles {
+  cursor: pointer;
+  margin-right: 5px;
 }
-.caret-rotate {
+#search-ing,
+#search-app,
+#search-ust {
+  width: 100%;
+}
+.chevron-rotate {
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -126,6 +176,15 @@ body {
   opacity: 0;
   cursor: pointer;
 }
+.menus-open {
+  display: block;
+  opacity: 1;
+  height: 397px;
+  width: 640px;
+  border-radius: 5px;
+  padding-left: 20px;
+  z-index: 1;
+}
 .menuIngredients {
   background-color: #3282f7;
   left: 0;
@@ -141,29 +200,22 @@ body {
   left: 380px;
   top: 54px;
 }
-.menus-open {
-  display: block;
-  opacity: 1;
-  height: 397px;
-  width: 667px;
-  border-radius: 5px;
-  position: absolute;
-  padding-left: 20px;
-  z-index: 1;
-}
+
 .all-recepices {
   margin-top: 20px;
-  width: 1248px;
+  width: 100%;
   display: flex;
-  gap: 5em;
-  position: relative;
-  left: 7%;
+  gap: 3.5em;
+  border: 3px purple solid;
+  flex-wrap: wrap;
 }
 .recette {
   height: 364px;
   width: 380px;
   left: 0px;
   top: 0px;
+  position: relative;
+  left: 8.5%;
 }
 .recette-img {
   height: 178px;
@@ -248,32 +300,56 @@ body {
   font-size: 12px;
   font-weight: 700;
 }
-@media screen and (max-width: 768px) {
-  .input-group {
-    width: 700px;
-  }
-  .form-outline {
-    width: 700px;
-  }
-  #search-input {
-    width: 700px;
-  }
-  .recette {
+@media screen and (max-width: 1390px) {
+  .recette,
+  .recette-img {
     width: 300px;
-    left: 0px;
-    top: 0px;
   }
   .all-recepices {
-    width: 690px;
-    gap: 2em;
-    display: flex;
     flex-wrap: wrap;
   }
+}
+@media screen and (max-width: 1150px) {
+  .all-recepices {
+    flex-wrap: wrap;
+  }
+  .recette,
   .recette-img {
-    height: 140px;
+    width: 360px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .recette,
+  .recette-img {
     width: 300px;
   }
-  .menus-open {
-    width: 200px;
+}
+@media screen and (max-width: 755px) {
+  .recette,
+  .recette-img {
+    width: 250px;
+  }
+}
+@media screen and (max-width: 645px) {
+  .recette,
+  .recette-img {
+    width: 310px;
+  }
+  .all-recepices {
+    justify-content: center;
+  }
+  #dropdownMenus {
+    flex-direction: column;
+  }
+  .dropdown {
+    width: 300px;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .recette,
+  .recette-img {
+    width: 225px;
   }
 }

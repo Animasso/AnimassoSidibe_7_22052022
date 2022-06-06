@@ -25,94 +25,120 @@
     <header class="index">
       <img src="/assets/Les petits plats logo.png" alt="logo" class="logo" />
       <div class="input-group">
-        <div class="form-outline">
-          <input
-            id="search-input"
-            type="search"
-            class="form-control"
-            placeholder="Rechercher une recette"
-          />
-          <button id="search-button" type="submit" class="btnSearch">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+        <input
+          id="search-input"
+          type="search"
+          class="form-control"
+          placeholder="Rechercher une recette"
+        />
+        <button id="search-button" type="submit" class="btnSearch">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
     </header>
-    <div class="tag">
-      <span class="tagSelect"
-        >Coco<i class="fa-regular fa-circle-xmark"></i
-      ></span>
+    <div class="tags">
+      <div class="tag">
+        <span class="tagSelect"
+          >Coco<i class="fa-regular fa-circle-xmark"></i
+        ></span>
+      </div>
+      <div class="tag">
+        <span class="tagSelect"
+          >Coco<i class="fa-regular fa-circle-xmark"></i
+        ></span>
+      </div>
     </div>
 
     <div id="dropdownMenus">
-      <div class="dropdown">
-        <div class="select">
-          <span class="selected">ingrédients</span>
-          <div class="caret">
-            <img src="./assets/chevron-down.svg" alt="chevrondown" />
-          </div>
-        </div>
-        <ul class="menuIngredients menus">
+      <div class="dropdown" data-type="ingredients">
+        <div id="search-ing">
           <input
-            type="search"
-            name="search-ingredients"
-            id="search-ingredients"
-            placeholder="Rechercher un ingredient"
+            type="text"
+            name="ingredients"
+            id="ingredients-search"
+            placeholder="Ingredient"
           />
+        </div>
+        <span class="chevron-ingredients">
+          <img src="./assets/chevron-down.svg" alt="chevrondown" />
+        </span>
+        <ul class="menuIngredients menus">
           <li>chocolat</li>
           <li>thé</li>
           <li>café</li>
           <li>Vanille</li>
-          <li class="active">ingredients</li>
+          <li>ingredients</li>
         </ul>
       </div>
 
-      <div class="dropdown">
-        <div class="select">
-          <span class="selected">Appareils</span>
-          <div class="caret">
-            <img src="/assets/chevron-down.svg" alt="chevron-down" />
-          </div>
-        </div>
-        <ul class="menuAppareils menus">
+      <div class="dropdown" data-type="appareils">
+        <div id="search-app">
           <input
-            type="search"
-            name="search-appareils"
-            id="search-appareils"
-            placeholder="Rechercher un appareils"
+            type="text"
+            name="Appareils"
+            id="appareils-search"
+            placeholder="Appareils"
           />
+        </div>
+        <span class="chevron-appareils">
+          <img src="./assets/chevron-down.svg" alt="chevrondown" />
+        </span>
+        <ul class="menuAppareils menus">
           <li>Cookeo</li>
           <li>Blender</li>
           <li>Batteur</li>
           <li>Mixeur</li>
-          <li class="active">Appareils</li>
+          <li>Appareils</li>
         </ul>
       </div>
 
-      <div class="dropdown">
-        <div class="select">
-          <span class="selected">Ustensiles</span>
-          <div class="caret">
-            <img src="/assets/chevron-down.svg" alt="chevron-down" />
-          </div>
-        </div>
-        <ul class="menuUstensiles menus">
+      <div class="dropdown" data-type="ustensiles">
+        <div id="search-ust">
           <input
-            type="search"
-            name="search-ustensiles"
-            id="search-ustensiles"
-            placeholder="Rechercher un Ustensiles"
+            type="text"
+            name="ustensiles"
+            id="ustensiles-search"
+            placeholder="Ustensiles"
           />
-          <li>Fouet</li>
-          <li>couteau</li>
-          <li>Marise</li>
-          <li>Spatule</li>
-          <li class="active">Ustensiles</li>
+        </div>
+        <span class="chevron-ustensiles">
+          <img src="./assets/chevron-down.svg" alt="chevrondown" />
+        </span>
+        <ul class="menuUstensiles menus">
+          <li>Cookeo</li>
+          <li>Blender</li>
+          <li>Batteur</li>
+          <li>Mixeur</li>
+          <li>Appareils</li>
         </ul>
       </div>
     </div>
 
     <main class="all-recepices">
+      <div class="recette">
+        <div class="recette-img"></div>
+        <div class="recette-card">
+          <div class="title-time">
+            <p class="title">Limonade de Coco</p>
+            <p class="minute"><i class="fa-regular fa-clock"></i>10min</p>
+          </div>
+          <div class="ingredients-instructions">
+            <div class="ingredients">
+              <li>lait de coco 400ml</li>
+              <li>jus de citron</li>
+              <li>creme de coco</li>
+              <li>sucre 20g</li>
+              <li>Glacon 2</li>
+            </div>
+            <div class="instructions">
+              <p class="instruction-lign">
+                Mettre les cube de glaces à votre gout dans le blender ajouter
+                le lait la creme de cocole citron et le sucre
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="recette">
         <div class="recette-img"></div>
         <div class="recette-card">
@@ -193,5 +219,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="/script/dropdown.js"></script>
+    <script src="/script/app.js"></script>
+    <script src="/script/factories/recipesCardDOM.js"></script>
+    <script src="/script/helpers.js"></script>
   </body>
 </html>
