@@ -1,19 +1,24 @@
 
 async function fetchData() {
-    // récuperation des données des photographes
     const data = await fetch("./data/recipes.json")
     .then(response => response.json())
-    
-    
-    
     console.log(data);
-   
-   // console.log(data.recipes[0].servings);
-   /* const recipes = data
-    let titles= []
-   for (let titles of Object.keys(name)) {
-     titles = obj[name];
-   }
-   console.log(titles);*/
+    const recipes= data.recipes
+    console.log(recipes);
 }
 fetchData()
+
+async function displayCard(recipes) {
+    const allRecepies = document.querySelector(".all-recepices");
+    recipes.forEach((recipe) => {
+        const recipesModel = recipesFactory(recipe);
+        const recipesCardDOM = recipesModel.buildRecipesCard();
+        allRecepies.appendChild(recipesCardDOM);
+    });
+}
+async function init() {
+    const recipes  = await fetchData();
+    displayCard(recipes)
+}
+
+init()

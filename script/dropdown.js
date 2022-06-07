@@ -21,7 +21,7 @@ dropdowns.forEach(dropdown=>{
     console.log(options);
     
     
-   //const inputIngredients = dropdown.querySelector('.input-ingredients')
+
    chevronIngredient.addEventListener('click',()=>{
         if ( chevronIngredient.classList.toggle('chevron-rotate')) {
             ingredientsInput.placeholder = `Rechercher un ingrédient`;
