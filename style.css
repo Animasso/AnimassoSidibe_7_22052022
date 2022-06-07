@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 46px;
-  border: 3px blue solid;
+
   width: 100%;
 }
 
@@ -19,7 +19,6 @@ body {
   width: 100%;
   display: flex;
   gap: 1em;
-  border: 3px green solid;
 }
 .tag {
   background-color: #3282f7;
@@ -82,6 +81,8 @@ body {
   -moz-transition: transform 0.1s;
   -ms-transition: transform 0.1s;
   -o-transition: transform 0.1s;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .dropdown-active {
   width: 660px;
@@ -99,7 +100,6 @@ body {
   width: 100%;
   display: flex;
   margin-top: 1em;
-  border: 3px black solid;
 }
 /*input[type="text"]#search-ingredients {
   display: block;
@@ -135,7 +135,6 @@ body {
   font-family: "Lato", sans-serif;
   height: 22px;
   width: 100%;
-
   top: 23px;
   font-size: 18px;
   font-weight: 700;
@@ -171,6 +170,8 @@ body {
   -moz-border-radius: 0.5em;
   -ms-border-radius: 0.5em;
   -o-border-radius: 0.5em;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   position: absolute;
   display: none;
   opacity: 0;
@@ -180,7 +181,7 @@ body {
   display: block;
   opacity: 1;
   height: 397px;
-  width: 640px;
+  width: 639px;
   border-radius: 5px;
   padding-left: 20px;
   z-index: 1;
@@ -188,17 +189,21 @@ body {
 .menuIngredients {
   background-color: #3282f7;
   left: 0;
-  top: 54px;
+  top: 52px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .menuAppareils {
   background-color: #68d9a4;
-  left: 190px;
-  top: 54px;
+  top: 52px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .menuUstensiles {
   background-color: #ed6454;
-  left: 380px;
-  top: 54px;
+  top: 52px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .all-recepices {
@@ -206,7 +211,7 @@ body {
   width: 100%;
   display: flex;
   gap: 3.5em;
-  border: 3px purple solid;
+
   flex-wrap: wrap;
 }
 .recette {
@@ -335,11 +340,15 @@ body {
   .recette-img {
     width: 310px;
   }
+  .recette {
+    left: 0;
+  }
   .all-recepices {
     justify-content: center;
   }
   #dropdownMenus {
     flex-direction: column;
+    align-items: center;
   }
   .dropdown {
     width: 300px;

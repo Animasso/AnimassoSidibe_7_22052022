@@ -1,25 +1,57 @@
 function recipesFactory(data) {
-    const { id, appliance,description,ingredients,name,servings,time,ustensils  } = data;
-  
-    function buildRecipesCard() {
-        return $elementDomFactory('div', { class: 'recette'},
-       $elementDomFactory('div', { class: 'recette-image' }),
-       $elementDomFactory('div', { class: 'title-time' },
-        $elementDomFactory('p', { class: 'title' }, name),
-        $elementDomFactory('p', { class: 'minute' },time)),
-        $elementDomFactory('div', { class: 'ingredients-instructions' },
-        $elementDomFactory('div', { class: 'ingredients' },
-        $elementDomFactory('li', { class: 'ing' },ingredients,)),
-        $elementDomFactory('div', { class: 'instructions' },
-        $elementDomFactory('p', { class: 'instruction-lign' },description,))
-        ))
+  const {
+    id,
+    appliance,
+    description,
+    ingredients,
+    name,
+    servings,
+    time,
+    ustensils,
+  } = data;
 
-    }
-  
-    return { id, appliance,description,ingredients,name,servings,time,ustensils, buildRecipesCard }
+  function buildRecipesCard() {
+    return $elementDomFactory(
+      "div",
+      { class: "recette" },
+      $elementDomFactory("div", { class: "recette-image" }),
+      $elementDomFactory(
+        "div",
+        { class: "title-time" },
+        $elementDomFactory("p", { class: "title" }, name),
+        $elementDomFactory("p", { class: "minute" }, time.toString())
+      ),
+      $elementDomFactory(
+        "div",
+        { class: "ingredients-instructions" },
+        $elementDomFactory(
+          "div",
+          { class: "ingredients" },
+        //  $elementDomFactory("li", { class: "ing" }, ingredients)
+        ),
+        $elementDomFactory(
+          "div",
+          { class: "instructions" },
+          $elementDomFactory("p", { class: "instruction-lign" }, description)
+        )
+      )
+    );
   }
 
-  /*
+  return {
+    id,
+    appliance,
+    description,
+    ingredients,
+    name,
+    servings,
+    time,
+    ustensils,
+    buildRecipesCard,
+  };
+}
+
+/*
    <div class="recette">
         <div class="recette-img"></div>
         <div class="recette-card">

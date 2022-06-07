@@ -1,4 +1,5 @@
 (function (window) {
+    'use strict';
   window.qs = function (selector, scope) {
     return (scope || document).querySelector(selector);
   };
@@ -28,4 +29,4 @@
 
     return el;
   };
-});
+})(window);

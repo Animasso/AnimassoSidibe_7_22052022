@@ -50,7 +50,7 @@
     </div>
 
     <div id="dropdownMenus">
-      <div class="dropdown" data-type="ingredients">
+      <div class="dropdown" id="ingredients">
         <div id="search-ing">
           <input
             type="text"
@@ -59,7 +59,7 @@
             placeholder="Ingredient"
           />
         </div>
-        <span class="chevron chevron-ingredients">
+        <span id="chevron-ingredients" class="chevron">
           <img src="./assets/chevron-down.svg" alt="chevrondown" />
         </span>
         <ul class="menuIngredients menus">
@@ -71,7 +71,7 @@
         </ul>
       </div>
 
-      <div class="dropdown" data-type="appareils">
+      <div class="dropdown" id="appareils">
         <div id="search-app">
           <input
             type="text"
@@ -80,7 +80,7 @@
             placeholder="Appareils"
           />
         </div>
-        <span class="chevron chevron-appareils">
+        <span id="chevron-appareils" class="chevron">
           <img src="./assets/chevron-down.svg" alt="chevrondown" />
         </span>
         <ul class="menuAppareils menus">
@@ -92,7 +92,7 @@
         </ul>
       </div>
 
-      <div class="dropdown" data-type="ustensiles">
+      <div class="dropdown" id="ustensiles">
         <div id="search-ust">
           <input
             type="text"
@@ -101,7 +101,7 @@
             placeholder="Ustensiles"
           />
         </div>
-        <span class="chevron chevron-ustensiles">
+        <span id="chevron-ustensiles" class="chevron">
           <img src="./assets/chevron-down.svg" alt="chevrondown" />
         </span>
         <ul class="menuUstensiles menus">
@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <main class="all-recepices">
+    <main class="all-recepices" id="recipes-container-id">
       <div class="recette">
         <div class="recette-img"></div>
         <div class="recette-card">
@@ -218,9 +218,9 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
-    <script src="/script/dropdown.js"></script>
-    <script src="/script/app.js"></script>
-    <script src="/script/factories/recipesCardDOM.js"></script>
     <script src="/script/helpers.js"></script>
+    <script src="/script/dropdown.js"></script>
+    <script src="/script/factories/recipesCardDOM.js"></script>
+    <script src="/script/app.js"></script>
   </body>
 </html>
