@@ -10,7 +10,6 @@ async function fetchData() {
 
 async function displayCard(recipes) {
     const allRecepies = document.getElementById("recipes-container-id");
-    const ulCard = document.querySelector('.ingredientsList')
     recipes.forEach((recipe) => {
         const recipesModel = recipesFactory(recipe);
         const recipesCardDOM = recipesModel.buildRecipesCard();
@@ -19,38 +18,42 @@ async function displayCard(recipes) {
 }
 
 function displayIngredients(recipes) {
-//recuperation de la liste des ingredients de chaque recette
-    let ingredientsCard = []; 
+    
+   
+//recuperation de la partie ingredients de chaque recette
+    let allIngredients = []; 
     for (let i = 0; i < recipes.length; i++) {
-        ingredientsCard.push(recipes[i].ingredients);
-       // console.log(ingredientsCard);
+        allIngredients.push(recipes[i].ingredients);
+       console.log(allIngredients);
     }  
-const ingred= document.querySelectorAll('.ingredients')
-//console.log(ingred);
-let ingredientsList = []
-    for (let el in ingredientsCard) {
-        for (let j = 0; j < ingredientsCard[el].length; j++) {
-            let items = ingredientsCard[el][j].ingredient;
+    const ingred= document.querySelector('.menuIngredients')
+   console.log(ingred);
+//creation d'un tableau avec uniquement les ingredients
+    let ingredientsList = []
+    for (let el in allIngredients) {
+        for (let j = 0; j < allIngredients[el].length; j++) {
+            let items = allIngredients[el][j].ingredient;
             ingredientsList.push(items.toLowerCase());
         };
     }
-    //elimination des doublons dans la liste
+//elimination des doublons dans la liste
     var uniqueArr = [...new Set(ingredientsList)]
-   // console.log(uniqueArr);
-  /*  for (let k = 0; k < uniqueArr.length; k++) {
-        const element = array[k];
-        console.log(el);
+    console.log(uniqueArr);
+// placer les ingredients dans chaques li    
+    for (let k = 0; k < uniqueArr.length; k++) {
+        ingred.innerHTML += `<li class="ingredients">${uniqueArr[k]}</li>`;
+
     }
-   uniqueArr.forEach(element => {
-       ingred.innerHTML =element
-   });
-   */
+
   }
+
+  
+   
+  
  
 async function init() {
     const recipes  = await fetchData();
     displayCard(recipes)
-    console.log(recipes);
     displayIngredients(recipes)
 
 }

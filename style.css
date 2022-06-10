@@ -185,6 +185,10 @@ body {
   border-radius: 5px;
   padding-left: 20px;
   z-index: 1;
+  display: GRID;
+  grid-template-columns: 1FR 1FR 1FR;
+  max-height: 328px;
+  overflow-y: auto;
 }
 .menuIngredients {
   background-color: #3282f7;
