@@ -314,6 +314,7 @@ body {
   top: 240px;
   font-size: 12px;
   font-weight: 700;
+  overflow-y: auto;
 }
 @media screen and (max-width: 1390px) {
   .recette,
