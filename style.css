@@ -144,9 +144,9 @@ body {
   border: none;
 }
 
-.chevron-ingredients,
-.chevron-appareils,
-.chevron-ustensiles {
+#chevron-ingredients,
+#chevron-appareils,
+#chevron-ustensiles {
   cursor: pointer;
   margin-right: 5px;
 }
@@ -243,28 +243,31 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.minute {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+}
 .ingredients-instructions {
   display: flex;
   justify-content: space-between;
 }
+
 .fa-regular.fa-clock::before {
   margin-right: 3px;
 }
 .fa-regular.fa-circle-xmark::before {
   margin-left: 5px;
 }
-.ingredients {
+.ingredientsList {
   height: 105px;
   width: 171px;
-  left: 20px;
-  top: 240px;
+  padding: 2px;
   list-style: none;
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
   letter-spacing: 0em;
   letter-spacing: 0em;
-  text-align: left;
 }
 .input-ingredients {
   display: none;
@@ -295,6 +298,9 @@ body {
 }
 #search-ustensiles {
   background-color: #ed6454;
+}
+.instruction {
+  width: 100%;
 }
 .instruction-lign {
   font-family: "Roboto", sans-serif;
