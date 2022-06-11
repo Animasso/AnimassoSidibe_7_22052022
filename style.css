@@ -101,9 +101,7 @@ body {
   display: flex;
   margin-top: 1em;
 }
-/*input[type="text"]#search-ingredients {
-  display: block;
-}*/
+
 #ingredients-search {
   width: 100%;
   background: #3282f7;
@@ -175,7 +173,6 @@ body {
   position: absolute;
   display: none;
   opacity: 0;
-  cursor: pointer;
 }
 .menus-open {
   display: block;
@@ -188,7 +185,7 @@ body {
   display: GRID;
   grid-template-columns: 1FR 1FR 1FR;
   max-height: 328px;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 .menuIngredients {
   background-color: #3282f7;
@@ -202,6 +199,7 @@ body {
   top: 52px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  height: 200px;
 }
 .menuUstensiles {
   background-color: #ed6454;
@@ -255,7 +253,18 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
+li.ingredients,
+li.appareils,
+li.ustensiles {
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+li.ingredients:hover,
+li.appareils:hover,
+li.ustensiles:hover {
+  opacity: 1;
+}
 .fa-regular.fa-clock::before {
   margin-right: 3px;
 }

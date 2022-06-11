@@ -1,19 +1,19 @@
 
-const ingredientsInput =document.querySelector('#ingredients-search')
-const appareilsInput =document.querySelector('#appareils-search')
-const ustensilesInput =document.querySelector('#ustensiles-search')
+const ingredientsInput = qs('#ingredients-search')
+const appareilsInput = qs('#appareils-search')
+const ustensilesInput = qs('#ustensiles-search')
 
-const ingDrop =document.getElementById('ingredients')
-const appDrop =document.getElementById('appareils')
-const ustDrop =document.getElementById('ustensiles')
+const ingDrop =get('ingredients')
+const appDrop =get('appareils')
+const ustDrop =get('ustensiles')
    
-const menuIngredients =document.querySelector('.menuIngredients')
-const menuAppareils =document.querySelector('.menuAppareils')
-const menuUstenciles =document.querySelector('.menuUstensiles')
+const menuIngredients =qs('.menuIngredients')
+const menuAppareils =qs('.menuAppareils')
+const menuUstenciles =qs('.menuUstensiles')
     
-const chevronIngredient= document.getElementById('chevron-ingredients')
-const chevronAppareils= document.getElementById('chevron-appareils')
-const chevronUstensiles= document.getElementById('chevron-ustensiles')
+const chevronIngredient= get('chevron-ingredients')
+const chevronAppareils= get('chevron-appareils')
+const chevronUstensiles= get('chevron-ustensiles')
 
     
 
@@ -50,7 +50,7 @@ chevronUstensiles.addEventListener('click',(e)=>{
         ustDrop.style.width ='667px'
         menuUstenciles.classList.toggle('menus-open')
     }else if (e.currentTarget=== chevronUstensiles ){
-        ustensilesInput.placeholder = `ustensiles`;
+        ustensilesInput.placeholder = `Ustensiles`;
         ustensilesInput.style.opacity= 1;
         ustDrop.style.width ='170px'
         menuUstenciles.classList.remove('menus-open')
