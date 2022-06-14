@@ -23,9 +23,9 @@
     for (let i = 0; i < recipes.length; i++) {
       allIngredients.push(recipes[i].ingredients);
     }
-    console.log(allIngredients);
+   // console.log(allIngredients);
     const ingred = qs(".menuIngredients");
-    console.log(ingred);
+    //console.log(ingred);
     //creation d'un tableau avec uniquement les ingredients
     let ingredientsList = [];
     for (let ingredient in allIngredients) {
@@ -34,13 +34,13 @@
         ingredientsList.push(items.toLowerCase());
       }
     }
-    console.log(ingredientsList);
+   // console.log(ingredientsList);
     //elimination des doublons dans la liste
     let uniqueArr = [...new Set(ingredientsList)];
     // console.log(uniqueArr);
     // placer les ingredients dans chaques li
     for (let k = 0; k < uniqueArr.length; k++) {
-      ingred.innerHTML += `<li class="ingredients">${uniqueArr[k]}</li>`;
+      ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
     }
   }
   function displayAppareils(recipes) {
@@ -53,7 +53,7 @@
     let uniqueArrApp = [...new Set(allAppareils)];
     //console.log(uniqueArrApp);
     for (let k = 0; k < uniqueArrApp.length; k++) {
-      appareils.innerHTML += `<li class="appareils">${uniqueArrApp[k]}</li>`;
+      appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
   }
   function displayUstensiles(recipes) {
@@ -62,24 +62,69 @@
     for (let i = 0; i < recipes.length; i++) {
       allUstensiles.push(recipes[i].ustensils);
     }
-    console.log(allUstensiles);
+   // console.log(allUstensiles);
     let ustensilesList = [];
     for (let ustensile in allUstensiles) {
       for (let j = 0; j < allUstensiles[ustensile].length; j++) {
         let item = allUstensiles[ustensile][j];
         ustensilesList.push(item.toLowerCase());
-        console.log(ustensile);
-        console.log([ustensile]);
-        console.log(j);
+       
       }
     }
-    console.log(ustensilesList);
+   // console.log(ustensilesList);
     let uniqueArrUst = [...new Set(ustensilesList)];
-    console.log(uniqueArrUst);
+   // console.log(uniqueArrUst);
     for (let k = 0; k < uniqueArrUst.length; k++) {
-      ustensiles.innerHTML += `<li class="ustensiles">${uniqueArrUst[k]}</li>`;
+      ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
   }
+
+
+
+function displayTag(){
+    const tags =qs('.tags')
+   const liIngredients =qsAll('.ingredients')
+   const liAppareils = qsAll('.appareils')
+   const liUstensiles = qsAll('.ustensiles')
+  
+
+liIngredients.forEach(element => {
+    element.addEventListener('click',(e)=>{
+        tags.innerHTML += `<div class="tag ingred"><span class="tagSelect"
+          >${element.dataset.ingredient}<i class="fa-regular fa-circle-xmark close"></i
+        ></span></div>`
+    })
+});
+
+liAppareils.forEach(element => {
+    element.addEventListener('click',(e)=>{
+        tags.innerHTML += `<div class="tag app"><span class="tagSelect"
+          >${element.dataset.appareil}<i class="fa-regular fa-circle-xmark" class="close"></i
+        ></span></div>`
+    }) 
+});
+
+liUstensiles.forEach(element => {
+    element.addEventListener('click',(e)=>{
+        tags.innerHTML += `<div class="tag ust"><span class="tagSelect"
+          >${element.dataset.ustensile}<i class="fa-regular fa-circle-xmark" class="close"></i
+        ></span></div>`
+    })
+   
+});
+
+}
+function deleteTag() {
+    const deleteTag = qsAll('.close');
+    console.log(deleteTag);
+    for (let i = 0; i < deleteTag.length; i++) {
+        const element = deleteTag[i];
+        element.addEventListener('click', ()=>{
+            element.style.display = 'none'
+            console.log(`hello`);
+        });
+    }
+}
 
   async function init() {
     const recipes = await fetchData();
@@ -87,6 +132,8 @@
     displayIngredients(recipes);
     displayAppareils(recipes);
     displayUstensiles(recipes);
+    displayTag()
+    deleteTag()
   }
 
   init();
