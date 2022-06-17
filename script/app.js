@@ -128,17 +128,8 @@ liUstensiles.forEach(element => {
 });
 
 }
-/*function deleteTag() {
-    const deleteTag = qsAll('body.close');
-    console.log(deleteTag);
-    for (let i = 0; i < deleteTag.length; i++) {
-        const element = deleteTag[i];
-        qsAll('body.close').addEventListener('click', ()=>{
-            element.style.display = 'none'
-            console.log(`hello`);
-        });
-    }
-}*/
+
+
 function searchRecipes(recipes){
     const inputSearch =get('search-input')
     const allRecepies = get("recipes-container-id");
