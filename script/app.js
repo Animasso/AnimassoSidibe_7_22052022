@@ -139,18 +139,20 @@ function searchRecipes(recipes){
     inputSearch.addEventListener('keydown',(e)=>{
         let valueInput = e.target.value
         console.log(valueInput);
+       const recipesArray =[]
     
         if(valueInput.length >= 3){
         allRecepies.innerHTML =""
-        const recipesFilter= recipes.filter((recipe)=>(recipe.name.toLowerCase().includes(valueInput) || recipe.description.toLowerCase().includes(valueInput) ||
-            recipe.ingredients.some((el) => el.ingredient.includes(valueInput))));
-            console.log(recipesFilter);
-            displayCard(recipesFilter)
-            if(recipesFilter.length === 0){
-                allRecepies .innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
-            } 
-
-            } 
+        for (let index = 0; index < recipes.length; index++) {
+            const element = recipes[index];
+            if((element.name.toLowerCase().includes(valueInput) || element.description.toLowerCase().includes(valueInput) ||
+            element.ingredients.some((el) => el.ingredient.includes(valueInput)))){
+                recipesArray.push(element)
+                console.log(recipesArray);
+                displayCard(recipesArray)
+            }
+        }
+        } 
     });
   }
 
