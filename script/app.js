@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-
+    const model = {recipes:[]}
   async function fetchData() {
     const response = await fetch("./data/recipes.json");
     const data = await response.json();
@@ -34,14 +34,26 @@
         ingredientsList.push(items.toLowerCase());
       }
     }
-   // console.log(ingredientsList);
+    console.log(ingredientsList);
     //elimination des doublons dans la liste
     let uniqueArr = [...new Set(ingredientsList)];
-    // console.log(uniqueArr);
+    //  console.log(uniqueArr);
     // placer les ingredients dans chaques li
     for (let k = 0; k < uniqueArr.length; k++) {
-      ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
-    }
+        ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
+      }
+    const tagIngredient =get('ingredients-search')
+    console.log(tagIngredient);
+    tagIngredient.addEventListener('keydown',(e)=>{
+        const tagIngredientValue = e.target.value
+        console.log(tagIngredientValue);
+        const filterIngTag =  uniqueArr.filter((ingredient)=>(ingredient.toLowerCase().includes(tagIngredientValue)))
+        console.log(uniqueArr);
+      console.log(filterIngTag)
+      displayCard(filterIngTag)
+    })
+   
+  
   }
   function displayAppareils(recipes) {
     const appareils = qs(".menuAppareils");
@@ -93,6 +105,8 @@ liIngredients.forEach(element => {
         tags.innerHTML += `<div class="tag ingred"><span class="tagSelect"
           >${element.dataset.ingredient}<i class="fa-regular fa-circle-xmark close"></i
         ></span></div>`
+        
+        
     })
 });
 
@@ -114,26 +128,58 @@ liUstensiles.forEach(element => {
 });
 
 }
-function deleteTag() {
-    const deleteTag = qsAll('.close');
+/*function deleteTag() {
+    const deleteTag = qsAll('body.close');
     console.log(deleteTag);
     for (let i = 0; i < deleteTag.length; i++) {
         const element = deleteTag[i];
-        element.addEventListener('click', ()=>{
+        qsAll('body.close').addEventListener('click', ()=>{
             element.style.display = 'none'
             console.log(`hello`);
         });
     }
-}
+}*/
+function searchRecipes(recipes){
+    const inputSearch =get('search-input')
+    const allRecepies = get("recipes-container-id");
+  
+    console.log(recipes);
+    console.log(inputSearch);
+    inputSearch.addEventListener('keydown',(e)=>{
+        let valueInput = e.target.value
+        console.log(valueInput);
+    
+        if(valueInput.length >= 3){
+        allRecepies.innerHTML =""
+        const recipesFilter= recipes.filter((recipe)=>(recipe.name.toLowerCase().includes(valueInput) || recipe.description.toLowerCase().includes(valueInput) ||
+            recipe.ingredients.some((el) => el.ingredient.includes(valueInput))));
+            console.log(recipesFilter);
+            displayCard(recipesFilter)
+            if(recipesFilter.length === 0){
+                allRecepies .innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
+            } 
 
-  async function init() {
-    const recipes = await fetchData();
+            } 
+    });
+  }
+
+function tagSearch(recipes){
+   
+}
+function render(recipes){
     displayCard(recipes);
     displayIngredients(recipes);
     displayAppareils(recipes);
     displayUstensiles(recipes);
+}
+  async function init() {
+    const recipes = await fetchData();
+    model.recipes =recipes
+    render(model.recipes)
     displayTag()
-    deleteTag()
+    //deleteTag()
+    searchRecipes(recipes)
+    tagSearch(recipes)
   }
 
   init();

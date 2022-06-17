@@ -15,11 +15,11 @@ function recipesFactory(data) {
     let dataIng = data.ingredients
   //  console.log(dataIng);
     for (let i = 0; i < dataIng.length; i++) {
-        if (dataIng[i].unit != undefined ) {
+        if (dataIng[i].unit) {
             ingredientsCard.push(dataIng[i].ingredient + ": " + dataIng[i].quantity + " " + dataIng[i].unit)
            // console.log(ingredientsCard);
         }else{   
-        ingredientsCard.push(dataIng[i].ingredient + ": " + dataIng[i].quantity )
+          ingredientsCard.push(dataIng[i].ingredient + " " + (dataIng[i].quantity || '') )
         }
 
       
