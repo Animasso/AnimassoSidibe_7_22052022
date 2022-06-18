@@ -145,13 +145,14 @@ function searchRecipes(recipes){
         allRecepies.innerHTML =""
         for (let index = 0; index < recipes.length; index++) {
             const element = recipes[index];
+            console.log(element);
             if((element.name.toLowerCase().includes(valueInput) || element.description.toLowerCase().includes(valueInput) ||
             element.ingredients.some((el) => el.ingredient.includes(valueInput)))){
                 recipesArray.push(element)
-                console.log(recipesArray);
-                displayCard(recipesArray)
+                console.log(recipesArray);  
             }
         }
+        displayCard(recipesArray)
         } 
     });
   }
