@@ -145,7 +145,7 @@ function searchRecipes(recipes){
   
     console.log(recipes);
     console.log(inputSearch);
-    inputSearch.addEventListener('keydown',(e)=>{
+    inputSearch.addEventListener('keyup',(e)=>{
         let valueInput = e.target.value
         console.log(valueInput);
     
@@ -158,13 +158,32 @@ function searchRecipes(recipes){
             if(recipesFilter.length === 0){
                 allRecepies .innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
             } 
-
-            } 
+            }
+            if (valueInput.length <= 2) {
+                allRecepies.innerHTML =""
+                displayCard(recipes)
+            }
     });
   }
 
 function tagSearch(recipes){
-   
+    const allRecepies = get("recipes-container-id");
+   const liIngredients =qsAll('.ingredients')
+   liIngredients.forEach(element => {
+      const list= element.dataset.ingredient
+      console.log(list);
+   });
+   console.log(liIngredients);
+   liIngredients.forEach(element => {
+       element.addEventListener('click',()=>{
+        allRecepies.innerHTML =""
+           const tagfilterIngredient = recipes.filter((recipe)=>recipe.name.toLowerCase().includes(element.dataset.ingredient)||
+            recipe.description.toLowerCase().includes(element.dataset.ingredient) ||
+           recipe.ingredients.some((el) => el.ingredient.includes(element.dataset.ingredient)))
+           console.log(tagfilterIngredient);
+           displayCard(tagfilterIngredient)
+       })
+   });
 }
 function render(recipes){
     displayCard(recipes);
