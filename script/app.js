@@ -146,10 +146,12 @@ function searchRecipes(recipes){
     console.log(recipes);
     console.log(inputSearch);
     inputSearch.addEventListener('keyup',(e)=>{
+
         let valueInput = e.target.value
         console.log(valueInput);
     
         if(valueInput.length >= 3){
+            console.time('filter')
         allRecepies.innerHTML =""
         const recipesFilter= recipes.filter((recipe)=>(recipe.name.toLowerCase().includes(valueInput) || recipe.description.toLowerCase().includes(valueInput) ||
             recipe.ingredients.some((el) => el.ingredient.includes(valueInput))));
@@ -163,6 +165,7 @@ function searchRecipes(recipes){
                 allRecepies.innerHTML =""
                 displayCard(recipes)
             }
+            console.timeEnd('filter')
     });
   }
 
