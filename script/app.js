@@ -136,7 +136,9 @@ function searchRecipes(recipes){
   
     console.log(recipes);
     console.log(inputSearch);
+   
     inputSearch.addEventListener('keydown',(e)=>{
+        console.time('filter')
         let valueInput = e.target.value
         console.log(valueInput);
        const recipesArray =[]
@@ -154,6 +156,7 @@ function searchRecipes(recipes){
         }
         displayCard(recipesArray)
         } 
+        console.timeEnd('filter')
     });
   }
 
