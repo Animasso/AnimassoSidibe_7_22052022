@@ -138,12 +138,13 @@ function searchRecipes(recipes){
     console.log(inputSearch);
    
     inputSearch.addEventListener('keydown',(e)=>{
-        console.time('filter')
+        
         let valueInput = e.target.value
         console.log(valueInput);
        const recipesArray =[]
     
         if(valueInput.length >= 3){
+            console.time('loop')
         allRecepies.innerHTML =""
         for (let index = 0; index < recipes.length; index++) {
             const element = recipes[index];
@@ -156,7 +157,7 @@ function searchRecipes(recipes){
         }
         displayCard(recipesArray)
         } 
-        console.timeEnd('filter')
+        console.timeEnd('loop')
     });
   }
 
