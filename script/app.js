@@ -154,10 +154,13 @@ function searchRecipes(recipes){
         if(valueInput.length >= 3){
             console.time('filter')
         allRecepies.innerHTML =""
+        get('ingredient-list-id').innerHTML=''
+        get('appareils-list-id').innerHTML=''
+        get('ustensiles-list-id').innerHTML=''
         const recipesFilter= recipes.filter((recipe)=>(recipe.name.toLowerCase().includes(valueInput) || recipe.description.toLowerCase().includes(valueInput) ||
             recipe.ingredients.some((el) => el.ingredient.includes(valueInput))));
             console.log(recipesFilter);
-            displayCard(recipesFilter)
+            render(recipesFilter)
             if(recipesFilter.length === 0){
                 allRecepies .innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
             } 
@@ -169,6 +172,9 @@ function searchRecipes(recipes){
             console.timeEnd('filter')
     });
   }
+ 
+
+
 
 //Filtrage par tags
 function tagSearch(recipes){
@@ -207,7 +213,7 @@ function tagSearch(recipes){
          recipe.description.toLowerCase().includes(element.dataset.ustensile) 
        )
         console.log(tagfilterUstensiles);
-        displayCard(tagfilterUstensiles)
+        render(tagfilterUstensiles)
     })
     });
 
@@ -217,6 +223,7 @@ function render(recipes){
     displayIngredients(recipes);
     displayAppareils(recipes);
     displayUstensiles(recipes);
+    tagSearch(recipes)
 }
   async function init() {
     const recipes = await fetchData();
