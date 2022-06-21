@@ -59,7 +59,7 @@
     const appareils = qs(".menuAppareils");
     let allAppareils = [];
     for (let i = 0; i < recipes.length; i++) {
-      allAppareils.push(recipes[i].appliance);
+      allAppareils.push(recipes[i].appliance.toLowerCase());
       //console.log(allAppareils);
     }
     let uniqueArrApp = [...new Set(allAppareils)];
@@ -92,7 +92,7 @@
   }
 
 
-
+// affichage des tags
 function displayTag(){
     const tags =qs('.tags')
    const liIngredients =qsAll('.ingredients')
@@ -139,6 +139,7 @@ liUstensiles.forEach(element => {
         });
     }
 }*/
+//Input de recherche principal
 function searchRecipes(recipes){
     const inputSearch =get('search-input')
     const allRecepies = get("recipes-container-id");
@@ -169,14 +170,14 @@ function searchRecipes(recipes){
     });
   }
 
+//Filtrage par tags
 function tagSearch(recipes){
     const allRecepies = get("recipes-container-id");
-   const liIngredients =qsAll('.ingredients')
-   liIngredients.forEach(element => {
-      const list= element.dataset.ingredient
-      console.log(list);
-   });
-   console.log(liIngredients);
+    const liIngredients =qsAll('.ingredients')
+    const liAppareils=qsAll('.appareils')
+    console.log(liAppareils);
+    const liUstensiles =qsAll('.ustensiles')
+   
    liIngredients.forEach(element => {
        element.addEventListener('click',()=>{
         allRecepies.innerHTML =""
@@ -186,7 +187,30 @@ function tagSearch(recipes){
            console.log(tagfilterIngredient);
            displayCard(tagfilterIngredient)
        })
-   });
+    });
+
+   liAppareils.forEach(element => {
+    element.addEventListener('click',()=>{
+     allRecepies.innerHTML =""
+        const tagfilterAppareil  = recipes.filter((recipe)=>
+         recipe.description.toLowerCase().includes(element.dataset.appareil)
+         )
+        console.log(tagfilterAppareil);
+        displayCard(tagfilterAppareil)
+    })
+    });
+
+    liUstensiles.forEach(element => {
+    element.addEventListener('click',()=>{
+     allRecepies.innerHTML =""
+        const tagfilterUstensiles = recipes.filter((recipe)=>
+         recipe.description.toLowerCase().includes(element.dataset.ustensile) 
+       )
+        console.log(tagfilterUstensiles);
+        displayCard(tagfilterUstensiles)
+    })
+    });
+
 }
 function render(recipes){
     displayCard(recipes);
