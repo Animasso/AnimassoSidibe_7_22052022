@@ -187,34 +187,56 @@ function tagSearch(recipes){
    liIngredients.forEach(element => {
        element.addEventListener('click',()=>{
         allRecepies.innerHTML =""
+        get('ingredient-list-id').innerHTML=''
+        get('appareils-list-id').innerHTML=''
+        get('ustensiles-list-id').innerHTML=''
            const tagfilterIngredient = recipes.filter((recipe)=>recipe.name.toLowerCase().includes(element.dataset.ingredient)||
             recipe.description.toLowerCase().includes(element.dataset.ingredient) ||
            recipe.ingredients.some((el) => el.ingredient.includes(element.dataset.ingredient)))
            console.log(tagfilterIngredient);
-           displayCard(tagfilterIngredient)
+           if (tagfilterIngredient.length === 0) {
+            allRecepies.innerHTML ='pas de recette trouver'
+            }
+           render(tagfilterIngredient)
+         
        })
     });
 
    liAppareils.forEach(element => {
     element.addEventListener('click',()=>{
      allRecepies.innerHTML =""
+     get('ingredient-list-id').innerHTML=''
+     get('appareils-list-id').innerHTML=''
+     get('ustensiles-list-id').innerHTML=''
         const tagfilterAppareil  = recipes.filter((recipe)=>
+        recipe.name.toLowerCase().includes(element.dataset.ingredient)||
          recipe.description.toLowerCase().includes(element.dataset.appareil)
          )
+         if (tagfilterAppareil.length ===0) {
+            allRecepies.innerHTML ="RIEN TROUVER"
+        }
         console.log(tagfilterAppareil);
-        displayCard(tagfilterAppareil)
+        render(tagfilterAppareil)
+      
     })
     });
 
     liUstensiles.forEach(element => {
     element.addEventListener('click',()=>{
      allRecepies.innerHTML =""
+     get('ingredient-list-id').innerHTML=''
+     get('appareils-list-id').innerHTML=''
+     get('ustensiles-list-id').innerHTML=''
         const tagfilterUstensiles = recipes.filter((recipe)=>
          recipe.description.toLowerCase().includes(element.dataset.ustensile) 
        )
+       if (tagfilterUstensiles.length === 0) {
+        allRecepies.innerHTML ="RIEN TROUVER"
+    }
         console.log(tagfilterUstensiles);
         render(tagfilterUstensiles)
     })
+   
     });
 
 }
