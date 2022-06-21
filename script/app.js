@@ -186,10 +186,11 @@ function tagSearch(recipes){
             recipe.description.toLowerCase().includes(element.dataset.ingredient) ||
            recipe.ingredients.some((el) => el.ingredient.includes(element.dataset.ingredient)))
            console.log(tagfilterIngredient);
-           render(tagfilterIngredient)
            if (tagfilterIngredient.length === 0) {
-               allRecepies.innerHTML ='pas de recette trouver'
-           }
+            allRecepies.innerHTML ='pas de recette trouver'
+            }
+           render(tagfilterIngredient)
+         
        })
     });
 
@@ -203,8 +204,12 @@ function tagSearch(recipes){
         recipe.name.toLowerCase().includes(element.dataset.ingredient)||
          recipe.description.toLowerCase().includes(element.dataset.appareil)
          )
+         if (tagfilterAppareil.length ===0) {
+            allRecepies.innerHTML ="RIEN TROUVER"
+        }
         console.log(tagfilterAppareil);
         render(tagfilterAppareil)
+      
     })
     });
 
@@ -217,9 +222,13 @@ function tagSearch(recipes){
         const tagfilterUstensiles = recipes.filter((recipe)=>
          recipe.description.toLowerCase().includes(element.dataset.ustensile) 
        )
+       if (tagfilterUstensiles.length === 0) {
+        allRecepies.innerHTML ="RIEN TROUVER"
+    }
         console.log(tagfilterUstensiles);
         render(tagfilterUstensiles)
     })
+   
     });
 
 }
