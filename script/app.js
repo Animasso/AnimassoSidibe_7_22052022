@@ -145,22 +145,29 @@ function searchRecipes(recipes){
     
         if(valueInput.length >= 3){
             console.time('loop')
-        allRecepies.innerHTML =""
-        for (let index = 0; index < recipes.length; index++) {
-            const element = recipes[index];
-            console.log(element);
-            if((element.name.toLowerCase().includes(valueInput) || element.description.toLowerCase().includes(valueInput) ||
-            element.ingredients.some((el) => el.ingredient.includes(valueInput)))){
-                recipesArray.push(element)
-                console.log(recipesArray);  
+            allRecepies.innerHTML =""
+            get('ingredient-list-id').innerHTML=''
+            get('appareils-list-id').innerHTML=''
+            get('ustensiles-list-id').innerHTML=''
+            for (let index = 0; index < recipes.length; index++) {
+                const element = recipes[index];
+                console.log(element);
+                if(
+                    element.name.toLowerCase().includes(valueInput) || 
+                    element.description.toLowerCase().includes(valueInput) ||
+                    element.ingredients.some((el) => el.ingredient.includes(valueInput))){
+                    recipesArray.push(element)
+                    console.log(recipesArray);  
             }
         }
-        displayCard(recipesArray)
+        render(recipesArray)
         } 
         console.timeEnd('loop')
-    });
-  }
+    
+        
+    })
 
+}
 function tagSearch(recipes){
    
 }
@@ -169,6 +176,7 @@ function render(recipes){
     displayIngredients(recipes);
     displayAppareils(recipes);
     displayUstensiles(recipes);
+
 }
   async function init() {
     const recipes = await fetchData();
