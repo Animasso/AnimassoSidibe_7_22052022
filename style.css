@@ -378,6 +378,9 @@ li.appareils {
   .recette-img {
     width: 300px;
   }
+  .ingredientsList {
+    overflow: auto;
+  }
 }
 @media screen and (max-width: 755px) {
   .recette,
