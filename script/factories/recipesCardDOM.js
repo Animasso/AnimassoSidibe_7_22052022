@@ -50,7 +50,6 @@ function recipesFactory(data) {
   }
   function buildUserChildList(children) {
     return children.map(child => ($elementDomFactory('li', {}, child )));
-  
   }
   
  

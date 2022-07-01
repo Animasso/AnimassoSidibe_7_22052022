@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  const model = { recipes: [] };
+  const model = { recipes: [], ingredients: [], appareils: [], ustensiles: [] };
   async function fetchData() {
     const response = await fetch("./data/recipes.json");
     const data = await response.json();
@@ -22,9 +22,6 @@
     for (let i = 0; i < recipes.length; i++) {
       allIngredients.push(recipes[i].ingredients);
     }
-    // console.log(allIngredients);
-    const ingred = qs(".menuIngredients");
-    //console.log(ingred);
     //creation d'un tableau avec uniquement les ingredients
     let ingredientsList = [];
     for (let ingredient in allIngredients) {
@@ -33,10 +30,13 @@
         ingredientsList.push(items.toLowerCase());
       }
     }
-    console.log(ingredientsList);
+    model.ingredients = ingredientsList;
+    buildListIngredients(ingredientsList);
+  }
+  function buildListIngredients(ingredientsList) {
+    const ingred = qs(".menuIngredients");
     //elimination des doublons dans la liste
     let uniqueArr = [...new Set(ingredientsList)];
-    //  console.log(uniqueArr);
     // placer les ingredients dans chaques li
     for (let k = 0; k < uniqueArr.length; k++) {
       ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
@@ -50,39 +50,79 @@
     listLi.forEach((element) => {
       arrayIng.push(element.dataset.ingredient);
     });
-    console.log(arrayIng);
+    
 
-//     const searchIngredientInput = get("ingredients-search");
-//  ajout d'un listener sur l input
-//     searchIngredientInput.addEventListener("keyup", (e) => {
-//       const liList = get("ingredient-list-id")
-//       liList.innerHTML = "";
-//       const searchIngredientValue = e.target.value;
-//       console.log(searchIngredientValue);
-//       if (searchIngredientValue.length >=3 ) {
-//         const filterIngTag = arrayIng.filter((ingredient) =>
-//         ingredient.toLowerCase().includes(searchIngredientValue)
-//       );
-//       console.log(arrayIng);
-//       console.log(filterIngTag);
-     
-//       render(filterIngTag);
-//       }
-     
-//     });
+    const searchIngredientInput = get("ingredients-search");
+    //  ajout d'un listener sur l input
+    searchIngredientInput.addEventListener("keyup", (e) => {
+      const liList = get("ingredient-list-id");
+      liList.innerHTML = "";
+      const searchIngredientValue = e.target.value;
+
+      if (searchIngredientValue.length >= 3) {
+        const filterIngTag = model.ingredients.filter((ingredient) =>
+          ingredient.toLowerCase().includes(searchIngredientValue)
+        );
+        const allRecepies = get("recipes-container-id");
+        allRecepies.innerHTML = "";
+        buildListIngredients(filterIngTag);
+        displayTag();
+        tagSearch(model.recipes);
+      }
+    });
   }
   function displayAppareils(recipes) {
     const appareils = qs(".menuAppareils");
     let allAppareils = [];
     for (let i = 0; i < recipes.length; i++) {
       allAppareils.push(recipes[i].appliance.toLowerCase());
-      //console.log(allAppareils);
+    
     }
     let uniqueArrApp = [...new Set(allAppareils)];
-    //console.log(uniqueArrApp);
+ 
     for (let k = 0; k < uniqueArrApp.length; k++) {
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
+    model.appareils = allAppareils;
+  }
+  function buildListAppareils(allAppareils) {
+    const appareils = qs(".menuAppareils");
+    let uniqueArrApp = [...new Set(allAppareils)];
+  
+    for (let k = 0; k < uniqueArrApp.length; k++) {
+      appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
+    }
+  }
+  function searchAppareils() {
+    // creation d'un tableau vide qui va recevoir tout les ingredients
+    let arrayApp = [];
+    const listLiApp = qsAll(".appareils");
+
+    listLiApp.forEach((element) => {
+      arrayApp.push(element.dataset.appareil);
+    });
+    
+
+    const searchAppInput = get("appareils-search");
+    //  ajout d'un listener sur l input
+    searchAppInput.addEventListener("keyup", (e) => {
+      const liListApp = get("appareils-list-id");
+      liListApp.innerHTML = "";
+      const searchappareilValue = e.target.value;
+      
+      if (searchappareilValue.length >= 3) {
+        const filterAppTag = model.appareils.filter((appareil) =>
+          appareil.toLowerCase().includes(searchappareilValue)
+        );
+       
+        buildListAppareils(filterAppTag);
+        displayTag();
+        tagSearch(model.recipes);
+      }
+      // if(searchIngredientValue.length <= 2){
+      //   displayIngredients(recipes)
+      // }
+    });
   }
   function displayUstensiles(recipes) {
     const ustensiles = qs(".menuUstensiles");
@@ -90,7 +130,7 @@
     for (let i = 0; i < recipes.length; i++) {
       allUstensiles.push(recipes[i].ustensils);
     }
-    // console.log(allUstensiles);
+   
     let ustensilesList = [];
     for (let ustensile in allUstensiles) {
       for (let j = 0; j < allUstensiles[ustensile].length; j++) {
@@ -98,12 +138,52 @@
         ustensilesList.push(item.toLowerCase());
       }
     }
-    // console.log(ustensilesList);
+
     let uniqueArrUst = [...new Set(ustensilesList)];
-    // console.log(uniqueArrUst);
+  
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
+    model.ustensiles = uniqueArrUst;
+  }
+  function buildListUstensiles(ustensilesList) {
+    const ustensiles = qs(".menuUstensiles");
+    //elimination des doublons dans la liste
+
+    let uniqueArrUst = [...new Set(ustensilesList)];
+ 
+    for (let k = 0; k < uniqueArrUst.length; k++) {
+      ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
+    }
+  }
+  function searchUstensile() {
+    // creation d'un tableau vide qui va recevoir tout les ingredients
+    let arrayUst = [];
+    const listLiUstensiles = qsAll(".ustensiles");
+
+    listLiUstensiles.forEach((element) => {
+      arrayUst.push(element.dataset.ustensile);
+    });
+   
+
+    const searchUstensileInput = get("ustensiles-search");
+
+    //  ajout d'un listener sur l input
+    searchUstensileInput.addEventListener("keyup", (e) => {
+      const liListUstensiles = get("ustensiles-list-id");
+
+      liListUstensiles.innerHTML = "";
+      const searchUstensileValue = e.target.value;
+    
+      if (searchUstensileValue.length >= 3) {
+        const filterUstTag = model.ustensiles.filter((ustensile) =>
+          ustensile.toLowerCase().includes(searchUstensileValue)
+        );
+        buildListUstensiles(filterUstTag);
+        displayTag();
+        tagSearch(model.recipes);
+      }
+    });
   }
 
   // affichage des tags
@@ -136,7 +216,10 @@
         ></span></div>`;
       });
     });
+    const closeTag = qs('body.close')
+    console.log('closeTag:', closeTag)
   }
+
   /*function deleteTag() {
     const deleteTag = qsAll('body.close');
     console.log(deleteTag);
@@ -153,11 +236,9 @@
     const inputSearch = get("search-input");
     const allRecepies = get("recipes-container-id");
 
-    console.log(recipes);
-    console.log(inputSearch);
     inputSearch.addEventListener("keyup", (e) => {
       let valueInput = e.target.value;
-      console.log(valueInput);
+     
 
       if (valueInput.length >= 3) {
         console.time("filter");
@@ -171,7 +252,7 @@
             recipe.description.toLowerCase().includes(valueInput) ||
             recipe.ingredients.some((el) => el.ingredient.includes(valueInput))
         );
-        console.log(recipesFilter);
+       
         render(recipesFilter);
         if (recipesFilter.length === 0) {
           allRecepies.innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
@@ -193,7 +274,7 @@
     const allRecepies = get("recipes-container-id");
     const liIngredients = qsAll(".ingredients");
     const liAppareils = qsAll(".appareils");
-    console.log(liAppareils);
+   
     const liUstensiles = qsAll(".ustensiles");
 
     liIngredients.forEach((element) => {
@@ -212,7 +293,7 @@
               el.ingredient.includes(element.dataset.ingredient)
             )
         );
-        console.log(tagfilterIngredient);
+       
         if (tagfilterIngredient.length === 0) {
           allRecepies.innerHTML = "pas de recette trouver";
         }
@@ -234,7 +315,7 @@
         if (tagfilterAppareil.length === 0) {
           allRecepies.innerHTML = "RIEN TROUVER";
         }
-        console.log(tagfilterAppareil);
+       
         render(tagfilterAppareil);
       });
     });
@@ -251,7 +332,7 @@
         if (tagfilterUstensiles.length === 0) {
           allRecepies.innerHTML = "RIEN TROUVER";
         }
-        console.log(tagfilterUstensiles);
+        
         render(tagfilterUstensiles);
       });
     });
@@ -263,6 +344,8 @@
     displayUstensiles(recipes);
     tagSearch(recipes);
     searchIngredient();
+    searchAppareils();
+    searchUstensile();
   }
   async function init() {
     const recipes = await fetchData();
