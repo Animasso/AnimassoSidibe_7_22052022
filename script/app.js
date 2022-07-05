@@ -51,20 +51,21 @@
       arrayIng.push(element.dataset.ingredient);
     });
     
-
+const menus = qs('.menus')
     const searchIngredientInput = get("ingredients-search");
     //  ajout d'un listener sur l input
     searchIngredientInput.addEventListener("keyup", (e) => {
       const liList = get("ingredient-list-id");
-      liList.innerHTML = "";
+     
       const searchIngredientValue = e.target.value;
 
       if (searchIngredientValue.length >= 3) {
+        menus.classList.toggle('menus-open')
         const filterIngTag = model.ingredients.filter((ingredient) =>
           ingredient.toLowerCase().includes(searchIngredientValue)
         );
-        const allRecepies = get("recipes-container-id");
-        allRecepies.innerHTML = "";
+        liList.innerHTML = "";
+      
         buildListIngredients(filterIngTag);
         displayTag();
         tagSearch(model.recipes);
@@ -94,6 +95,7 @@
     }
   }
   function searchAppareils() {
+    const menus = qs('.menus')
     // creation d'un tableau vide qui va recevoir tout les ingredients
     let arrayApp = [];
     const listLiApp = qsAll(".appareils");
@@ -107,14 +109,16 @@
     //  ajout d'un listener sur l input
     searchAppInput.addEventListener("keyup", (e) => {
       const liListApp = get("appareils-list-id");
-      liListApp.innerHTML = "";
+     
       const searchappareilValue = e.target.value;
       
       if (searchappareilValue.length >= 3) {
+        
         const filterAppTag = model.appareils.filter((appareil) =>
           appareil.toLowerCase().includes(searchappareilValue)
         );
-       
+        menus.classList.toggle('menus-open')
+        liListApp.innerHTML = "";
         buildListAppareils(filterAppTag);
         displayTag();
         tagSearch(model.recipes);
@@ -163,22 +167,17 @@
 
     listLiUstensiles.forEach((element) => {
       arrayUst.push(element.dataset.ustensile);
-    });
-   
-
+    });  
     const searchUstensileInput = get("ustensiles-search");
-
     //  ajout d'un listener sur l input
     searchUstensileInput.addEventListener("keyup", (e) => {
       const liListUstensiles = get("ustensiles-list-id");
-
-      liListUstensiles.innerHTML = "";
       const searchUstensileValue = e.target.value;
-    
       if (searchUstensileValue.length >= 3) {
         const filterUstTag = model.ustensiles.filter((ustensile) =>
           ustensile.toLowerCase().includes(searchUstensileValue)
         );
+        liListUstensiles.innerHTML = "";
         buildListUstensiles(filterUstTag);
         displayTag();
         tagSearch(model.recipes);
@@ -194,43 +193,71 @@
     const liUstensiles = qsAll(".ustensiles");
 
     liIngredients.forEach((element) => {
-      element.addEventListener("click", (e) => {
-        tags.innerHTML += `<div class="tag ingred"><span class="tagSelect"
-          >${element.dataset.ingredient}<i class="fa-regular fa-circle-xmark close"></i
-        ></span></div>`;
+      element.addEventListener("click", (e1) => {
+        let tagIngredient = document.createElement('div')
+        tagIngredient.id ='tag-' + element.dataset.ingredient
+        tagIngredient.classList.add('ingred')
+        tagIngredient.classList.add('tag')
+tags.appendChild(tagIngredient)
+        let spanIngredient = document.createElement('span')
+        spanIngredient.classList.add('tagSelect')
+        tagIngredient.appendChild(spanIngredient)
+        spanIngredient.textContent = element.dataset.ingredient
+        let xmark = document.createElement('i')
+        xmark.classList.add('fa-regular')
+        xmark.classList.add('fa-circle-xmark')
+        xmark.classList.add('close')
+        xmark.setAttribute('data-ingredient', element.dataset.ingredient)
+        spanIngredient.appendChild(xmark)
+        tags.appendChild(tagIngredient)
+        xmark.addEventListener('click',(e)=>{
+         document.getElementById('tag-'+  e.target.dataset.ingredient).remove()
+        console.log(' e.target.id:', 'tag-'+ e.target.dataset.ingredient)    
+        })
       });
     });
 
     liAppareils.forEach((element) => {
-      element.addEventListener("click", (e) => {
-        tags.innerHTML += `<div class="tag app"><span class="tagSelect"
-          >${element.dataset.appareil}<i class="fa-regular fa-circle-xmark" class="close"></i
-        ></span></div>`;
+      element.addEventListener("click", () => {
+        
+        let tagAppareil = document.createElement('div')
+        tagAppareil.classList.add('tag')
+        tagAppareil.classList.add('app')
+        let spanAppareil = document.createElement('span')
+        spanAppareil.classList.add('tagSelect')
+        tagAppareil.appendChild(spanAppareil)
+        spanAppareil.textContent = element.dataset.appareil
+        let xmark = document.createElement('i')
+        xmark.classList.add('fa-regular')
+        xmark.classList.add('fa-circle-xmark')
+        xmark.classList.add('close')
+        spanAppareil.appendChild(xmark)
+        tags.appendChild(tagAppareil)
       });
     });
 
     liUstensiles.forEach((element) => {
-      element.addEventListener("click", (e) => {
-        tags.innerHTML += `<div class="tag ust"><span class="tagSelect"
-          >${element.dataset.ustensile}<i class="fa-regular fa-circle-xmark" class="close"></i
-        ></span></div>`;
+      element.addEventListener("click", () => {
+        let tagUstensile = document.createElement('div')
+        tagUstensile.classList.add('tag')
+        tagUstensile.classList.add('ust')
+        let spanUstensile = document.createElement('span')
+        spanUstensile.classList.add('tagSelect')
+        tagUstensile.appendChild(spanUstensile)
+        spanUstensile.textContent = element.dataset.ustensile
+        let xmark = document.createElement('i')
+        xmark.classList.add('fa-regular')
+        xmark.classList.add('fa-circle-xmark')
+        xmark.classList.add('close')
+        spanUstensile.appendChild(xmark)
+        tags.appendChild(tagUstensile)
+       
       });
     });
-    const closeTag = qs('body.close')
+    const closeTag = qsAll('.close')
     console.log('closeTag:', closeTag)
   }
 
-  /*function deleteTag() {
-    const deleteTag = qsAll('body.close');
-    console.log(deleteTag);
-    for (let i = 0; i < deleteTag.length; i++) {
-        const element = deleteTag[i];
-        qsAll('body.close').addEventListener('click', ()=>{
-            element.style.display = 'none'
-            console.log(`hello`);
-        });
-    }
-}*/
   //Input de recherche principal
   function searchRecipes(recipes) {
     const inputSearch = get("search-input");
@@ -352,7 +379,6 @@
     model.recipes = recipes;
     render(model.recipes);
     displayTag();
-    //deleteTag()
     searchRecipes(recipes);
     tagSearch(recipes);
   }

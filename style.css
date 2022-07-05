@@ -359,6 +359,9 @@ li.appareils {
   font-weight: 700;
   overflow-y: auto;
 }
+.close {
+  cursor: pointer;
+}
 @media screen and (max-width: 1390px) {
   .recette,
   .recette-img {
