@@ -1,6 +1,12 @@
 (function () {
   "use strict";
-  const model = { recipes: [], ingredients: [], appareils: [], ustensiles: [] };
+  const model = {
+    recipes: [],
+    ingredients: [],
+    appareils: [],
+    ustensiles: [],
+    tagsIngredients: [],
+  };
   async function fetchData() {
     const response = await fetch("./data/recipes.json");
     const data = await response.json();
@@ -50,22 +56,22 @@
     listLi.forEach((element) => {
       arrayIng.push(element.dataset.ingredient);
     });
-    
-const menus = qs('.menus')
+
+    const menus = qs(".menus");
     const searchIngredientInput = get("ingredients-search");
     //  ajout d'un listener sur l input
     searchIngredientInput.addEventListener("keyup", (e) => {
       const liList = get("ingredient-list-id");
-     
+
       const searchIngredientValue = e.target.value;
 
       if (searchIngredientValue.length >= 3) {
-        menus.classList.toggle('menus-open')
+        menus.classList.toggle("menus-open");
         const filterIngTag = model.ingredients.filter((ingredient) =>
           ingredient.toLowerCase().includes(searchIngredientValue)
         );
         liList.innerHTML = "";
-      
+
         buildListIngredients(filterIngTag);
         displayTag();
         tagSearch(model.recipes);
@@ -77,10 +83,9 @@ const menus = qs('.menus')
     let allAppareils = [];
     for (let i = 0; i < recipes.length; i++) {
       allAppareils.push(recipes[i].appliance.toLowerCase());
-    
     }
     let uniqueArrApp = [...new Set(allAppareils)];
- 
+
     for (let k = 0; k < uniqueArrApp.length; k++) {
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
@@ -89,13 +94,13 @@ const menus = qs('.menus')
   function buildListAppareils(allAppareils) {
     const appareils = qs(".menuAppareils");
     let uniqueArrApp = [...new Set(allAppareils)];
-  
+
     for (let k = 0; k < uniqueArrApp.length; k++) {
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
   }
   function searchAppareils() {
-    const menus = qs('.menus')
+    const menus = qs(".menus");
     // creation d'un tableau vide qui va recevoir tout les ingredients
     let arrayApp = [];
     const listLiApp = qsAll(".appareils");
@@ -103,21 +108,19 @@ const menus = qs('.menus')
     listLiApp.forEach((element) => {
       arrayApp.push(element.dataset.appareil);
     });
-    
 
     const searchAppInput = get("appareils-search");
     //  ajout d'un listener sur l input
     searchAppInput.addEventListener("keyup", (e) => {
       const liListApp = get("appareils-list-id");
-     
+
       const searchappareilValue = e.target.value;
-      
+
       if (searchappareilValue.length >= 3) {
-        
         const filterAppTag = model.appareils.filter((appareil) =>
           appareil.toLowerCase().includes(searchappareilValue)
         );
-        menus.classList.toggle('menus-open')
+        menus.classList.toggle("menus-open");
         liListApp.innerHTML = "";
         buildListAppareils(filterAppTag);
         displayTag();
@@ -134,7 +137,7 @@ const menus = qs('.menus')
     for (let i = 0; i < recipes.length; i++) {
       allUstensiles.push(recipes[i].ustensils);
     }
-   
+
     let ustensilesList = [];
     for (let ustensile in allUstensiles) {
       for (let j = 0; j < allUstensiles[ustensile].length; j++) {
@@ -144,7 +147,7 @@ const menus = qs('.menus')
     }
 
     let uniqueArrUst = [...new Set(ustensilesList)];
-  
+
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
@@ -155,7 +158,7 @@ const menus = qs('.menus')
     //elimination des doublons dans la liste
 
     let uniqueArrUst = [...new Set(ustensilesList)];
- 
+
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
@@ -167,7 +170,7 @@ const menus = qs('.menus')
 
     listLiUstensiles.forEach((element) => {
       arrayUst.push(element.dataset.ustensile);
-    });  
+    });
     const searchUstensileInput = get("ustensiles-search");
     //  ajout d'un listener sur l input
     searchUstensileInput.addEventListener("keyup", (e) => {
@@ -194,68 +197,84 @@ const menus = qs('.menus')
 
     liIngredients.forEach((element) => {
       element.addEventListener("click", (e1) => {
-        let tagIngredient = document.createElement('div')
-        tagIngredient.id ='tag-' + element.dataset.ingredient
-        tagIngredient.classList.add('ingred')
-        tagIngredient.classList.add('tag')
-tags.appendChild(tagIngredient)
-        let spanIngredient = document.createElement('span')
-        spanIngredient.classList.add('tagSelect')
-        tagIngredient.appendChild(spanIngredient)
-        spanIngredient.textContent = element.dataset.ingredient
-        let xmark = document.createElement('i')
-        xmark.classList.add('fa-regular')
-        xmark.classList.add('fa-circle-xmark')
-        xmark.classList.add('close')
-        xmark.setAttribute('data-ingredient', element.dataset.ingredient)
-        spanIngredient.appendChild(xmark)
-        tags.appendChild(tagIngredient)
-        xmark.addEventListener('click',(e)=>{
-         document.getElementById('tag-'+  e.target.dataset.ingredient).remove()
-        console.log(' e.target.id:', 'tag-'+ e.target.dataset.ingredient)    
-        })
+        let tagIngredient = document.createElement("div");
+        tagIngredient.id = "tag-" + element.dataset.ingredient;
+        tagIngredient.classList.add("ingred");
+        tagIngredient.classList.add("tag");
+        let spanIngredient = document.createElement("span");
+        spanIngredient.classList.add("tagSelect");
+        tagIngredient.appendChild(spanIngredient);
+        spanIngredient.textContent = element.dataset.ingredient;
+        let xmark = document.createElement("i");
+        xmark.classList.add("fa-regular");
+        xmark.classList.add("fa-circle-xmark");
+        xmark.classList.add("close");
+        xmark.setAttribute("data-ingredient", element.dataset.ingredient);
+        spanIngredient.appendChild(xmark);
+        tags.appendChild(tagIngredient);
+        xmark.addEventListener("click", (e) => {
+          document
+            .getElementById("tag-" + e.target.dataset.ingredient)
+            .remove();
+          console.log(" e.target.id:", "tag-" + e.target.dataset.ingredient);
+          model.tagsIngredients.push( e.target.dataset.ingredient)
+        });
       });
     });
 
     liAppareils.forEach((element) => {
-      element.addEventListener("click", () => {
-        
-        let tagAppareil = document.createElement('div')
-        tagAppareil.classList.add('tag')
-        tagAppareil.classList.add('app')
-        let spanAppareil = document.createElement('span')
-        spanAppareil.classList.add('tagSelect')
-        tagAppareil.appendChild(spanAppareil)
-        spanAppareil.textContent = element.dataset.appareil
-        let xmark = document.createElement('i')
-        xmark.classList.add('fa-regular')
-        xmark.classList.add('fa-circle-xmark')
-        xmark.classList.add('close')
-        spanAppareil.appendChild(xmark)
-        tags.appendChild(tagAppareil)
+      element.addEventListener("click", (e1) => {
+        let tagAppareil = document.createElement("div");
+        tagAppareil.id = "tag-" + element.dataset.appareil;
+        console.log(
+          "element.dataset.appareil:",
+          "tag-" + element.dataset.appareil
+        );
+        tagAppareil.classList.add("tag");
+        tagAppareil.classList.add("app");
+        let spanAppareil = document.createElement("span");
+        spanAppareil.classList.add("tagSelect");
+        tagAppareil.appendChild(spanAppareil);
+        spanAppareil.textContent = element.dataset.appareil;
+        let xmark = document.createElement("i");
+        xmark.classList.add("fa-regular");
+        xmark.classList.add("fa-circle-xmark");
+        xmark.classList.add("close");
+        xmark.setAttribute("data-appareil", element.dataset.appareil);
+        spanAppareil.appendChild(xmark);
+        tags.appendChild(tagAppareil);
+        xmark.addEventListener("click", (e) => {
+          document.getElementById("tag-" + e.target.dataset.appareil).remove();
+          console.log(" e.target.id:", "tag-" + e.target.dataset.appareil);
+        });
       });
     });
 
     liUstensiles.forEach((element) => {
       element.addEventListener("click", () => {
-        let tagUstensile = document.createElement('div')
-        tagUstensile.classList.add('tag')
-        tagUstensile.classList.add('ust')
-        let spanUstensile = document.createElement('span')
-        spanUstensile.classList.add('tagSelect')
-        tagUstensile.appendChild(spanUstensile)
-        spanUstensile.textContent = element.dataset.ustensile
-        let xmark = document.createElement('i')
-        xmark.classList.add('fa-regular')
-        xmark.classList.add('fa-circle-xmark')
-        xmark.classList.add('close')
-        spanUstensile.appendChild(xmark)
-        tags.appendChild(tagUstensile)
-       
+        let tagUstensile = document.createElement("div");
+        tagUstensile.id = "tag-" + element.dataset.ustensile;
+        tagUstensile.classList.add("tag");
+        tagUstensile.classList.add("ust");
+        let spanUstensile = document.createElement("span");
+        spanUstensile.classList.add("tagSelect");
+        tagUstensile.appendChild(spanUstensile);
+        spanUstensile.textContent = element.dataset.ustensile;
+        let xmark = document.createElement("i");
+        xmark.classList.add("fa-regular");
+        xmark.classList.add("fa-circle-xmark");
+        xmark.classList.add("close");
+        xmark.setAttribute("data-ustensile", element.dataset.ustensile);
+        spanUstensile.appendChild(xmark);
+        tags.appendChild(tagUstensile);
+        xmark.addEventListener("click", (e) => {
+          document.getElementById("tag-" + e.target.dataset.ustensile).remove();
+          console.log(" e.target.id:", "tag-" + e.target.dataset.ustensile);
+        });
       });
     });
-    const closeTag = qsAll('.close')
-    console.log('closeTag:', closeTag)
+    const closeTag = qsAll(".close");
+    console.log("closeTag:", closeTag);
   }
 
   //Input de recherche principal
@@ -265,7 +284,6 @@ tags.appendChild(tagIngredient)
 
     inputSearch.addEventListener("keyup", (e) => {
       let valueInput = e.target.value;
-     
 
       if (valueInput.length >= 3) {
         console.time("filter");
@@ -279,7 +297,7 @@ tags.appendChild(tagIngredient)
             recipe.description.toLowerCase().includes(valueInput) ||
             recipe.ingredients.some((el) => el.ingredient.includes(valueInput))
         );
-       
+
         render(recipesFilter);
         if (recipesFilter.length === 0) {
           allRecepies.innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
@@ -301,11 +319,11 @@ tags.appendChild(tagIngredient)
     const allRecepies = get("recipes-container-id");
     const liIngredients = qsAll(".ingredients");
     const liAppareils = qsAll(".appareils");
-   
     const liUstensiles = qsAll(".ustensiles");
 
     liIngredients.forEach((element) => {
       element.addEventListener("click", () => {
+        //ajouter l ingredient dans model tagsIngrdients puuis vider le dom et le reconstruire avec ce qu il dans model tag ingredient
         allRecepies.innerHTML = "";
         get("ingredient-list-id").innerHTML = "";
         get("appareils-list-id").innerHTML = "";
@@ -320,7 +338,7 @@ tags.appendChild(tagIngredient)
               el.ingredient.includes(element.dataset.ingredient)
             )
         );
-       
+
         if (tagfilterIngredient.length === 0) {
           allRecepies.innerHTML = "pas de recette trouver";
         }
@@ -342,7 +360,7 @@ tags.appendChild(tagIngredient)
         if (tagfilterAppareil.length === 0) {
           allRecepies.innerHTML = "RIEN TROUVER";
         }
-       
+
         render(tagfilterAppareil);
       });
     });
@@ -359,7 +377,7 @@ tags.appendChild(tagIngredient)
         if (tagfilterUstensiles.length === 0) {
           allRecepies.innerHTML = "RIEN TROUVER";
         }
-        
+
         render(tagfilterUstensiles);
       });
     });
@@ -373,14 +391,14 @@ tags.appendChild(tagIngredient)
     searchIngredient();
     searchAppareils();
     searchUstensile();
+    displayTag();
   }
   async function init() {
     const recipes = await fetchData();
     model.recipes = recipes;
     render(model.recipes);
-    displayTag();
-    searchRecipes(recipes);
     tagSearch(recipes);
+    searchRecipes(recipes);
   }
 
   init();
