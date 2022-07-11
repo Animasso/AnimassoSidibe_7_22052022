@@ -175,11 +175,10 @@
   }
 
   // affichage des tags
-  function displayTag(recipes) {
+  function displayTagIng(recipes) {
     const tags = qs(".tags");
     const liIngredients = qsAll(".ingredients");
-    const liAppareils = qsAll(".appareils");
-    const liUstensiles = qsAll(".ustensiles");
+
     // ajout d'un listener sur tout les li ingredient et creation du tag au click
     liIngredients.forEach((element) => {
       element.addEventListener("click", (e1) => {
@@ -222,6 +221,7 @@
         if (recipesFilterByIngredient.length === 0) {
           allRecepies.innerHTML = "pas de recette trouver";
         }
+
         //ajout d'un listnener sur la croix du tag
         xmark.addEventListener("click", (e) => {
           document
@@ -256,11 +256,16 @@
             }
           }
           displayIngredients(recipes);
-          displayTag(recipes);
+          displayTagIng(recipes);
+          displayTagAppareil(recipes);
+          displayTagUstensile(recipes);
         });
       });
     });
-
+  }
+  function displayTagAppareil(recipes) {
+    const tags = qs(".tags");
+    const liAppareils = qsAll(".appareils");
     liAppareils.forEach((element) => {
       element.addEventListener("click", (e2) => {
         let tagAppareil = document.createElement("div");
@@ -335,11 +340,16 @@
             }
           }
           displayAppareils(recipes);
-          displayTag(recipes);
+          displayTagIng(recipes);
+          displayTagAppareil(recipes);
+          displayTagUstensile(recipes);
         });
       });
     });
-
+  }
+  function displayTagUstensile(recipes) {
+    const tags = qs(".tags");
+    const liUstensiles = qsAll(".ustensiles");
     liUstensiles.forEach((element) => {
       element.addEventListener("click", (e3) => {
         let tagUstensile = document.createElement("div");
@@ -412,7 +422,9 @@
             }
           }
           displayUstensiles(recipes);
-          displayTag(recipes);
+          displayTagIng(recipes);
+          displayTagAppareil(recipes);
+          displayTagUstensile(recipes);
         });
       });
     });
@@ -539,7 +551,9 @@
     searchIngredient();
     searchAppareils();
     searchUstensile();
-    displayTag(recipes);
+    displayTagIng(recipes);
+    displayTagAppareil(recipes);
+    displayTagUstensile(recipes);
   }
   async function init() {
     const recipes = await fetchData();
