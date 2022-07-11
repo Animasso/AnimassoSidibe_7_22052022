@@ -62,7 +62,6 @@
           ingredient.toLowerCase().includes(searchIngredientValue)
         );
         liList.innerHTML = "";
-        menus.classList.toggle("menus-open");
 
         buildListIngredients(filterIngTag);
         displayTagIng(model.recipes);
@@ -168,7 +167,7 @@
         );
         liListUstensiles.innerHTML = "";
         buildListUstensiles(filterUstTag);
-        displayTagUstensile();
+        displayTagUstensile(model.recipes);
         tagSearch(model.recipes);
       }
     });
