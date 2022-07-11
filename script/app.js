@@ -65,7 +65,7 @@
         menus.classList.toggle("menus-open");
 
         buildListIngredients(filterIngTag);
-        displayTag(model.recipes);
+        displayTagIng(model.recipes);
         tagSearch(model.recipes);
       }
     });
@@ -109,7 +109,7 @@
 
         liListApp.innerHTML = "";
         buildListAppareils(filterAppTag);
-        displayTag(model.recipes);
+        displayTagAppareil(model.recipes);
         tagSearch(model.recipes);
       }
       // if(searchIngredientValue.length <= 2){
@@ -168,7 +168,7 @@
         );
         liListUstensiles.innerHTML = "";
         buildListUstensiles(filterUstTag);
-        displayTag();
+        displayTagUstensile();
         tagSearch(model.recipes);
       }
     });
