@@ -180,7 +180,7 @@
     const liIngredients = qsAll(".ingredients");
     const liAppareils = qsAll(".appareils");
     const liUstensiles = qsAll(".ustensiles");
-    // ajout d'un listener sur tout les li ingredient pour la creation du tag au click
+    // ajout d'un listener sur tout les li ingredient et creation du tag au click
     liIngredients.forEach((element) => {
       element.addEventListener("click", (e1) => {
         let tagIngredient = document.createElement("div");
@@ -216,12 +216,13 @@
         );
         console.log("recipesFilterByIngredient:", recipesFilterByIngredient);
         render(recipesFilterByIngredient);
-        // push du tag selection dans le tableau tagsIgredients
+        // push du tag selectionné dans le tableau tagsIgredients
         model.tagsIngredients.push(e1.target.dataset.ingredient);
         console.log("model:", model.tagsIngredients);
         if (recipesFilterByIngredient.length === 0) {
           allRecepies.innerHTML = "pas de recette trouver";
         }
+        //ajout d'un listnener sur la croix du tag
         xmark.addEventListener("click", (e) => {
           document
             .getElementById("tag-" + e.target.dataset.ingredient)
@@ -233,7 +234,8 @@
           if (myIndex !== -1) {
             model.tagsIngredients.splice(myIndex, 1);
             console.log("myIndex:", myIndex);
-            const recipesFilterByIngredient = recipes.filter(
+            //
+            const recipesFilterBySuppressIngredient = recipes.filter(
               (recipe) =>
                 recipe.name.toLowerCase().includes(model.tagsIngredients) ||
                 recipe.description
@@ -244,13 +246,13 @@
                 )
             );
             console.log("model:", model.tagsIngredients);
-            console.log(recipesFilterByIngredient);
-            displayCard(recipesFilterByIngredient);
+            console.log(recipesFilterBySuppressIngredient);
+            displayCard(recipesFilterBySuppressIngredient);
 
             if (model.tagsIngredients.length == 0) {
               allRecepies.innerHTML = "";
               get("ingredient-list-id").innerHTML = "";
-              displayCard(recipes);
+              displayCard(model.recipes);
             }
           }
           displayIngredients(recipes);
