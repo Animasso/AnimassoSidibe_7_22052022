@@ -248,7 +248,7 @@
               "recipesFilterBySuppressIngredient:",
               recipesFilterBySuppressIngredient
             );
-            displayCard(recipesFilterByIngredient);
+            render(recipesFilterByIngredient);
 
             if (model.tagsIngredients.length == 0) {
               allRecepies.innerHTML = "";
@@ -335,7 +335,7 @@
               "recipesFilterBySuppressAppareils:",
               recipesFilterBySuppressAppareils
             );
-            displayCard(recipesFilterBySuppressAppareils);
+            render(recipesFilterBySuppressAppareils);
             if (model.tagsAppareils.length == 0) {
               allRecepies.innerHTML = "";
               get("appareils-list-id").innerHTML = "";
@@ -419,7 +419,7 @@
               "recipesFilterBySuppressUstensiles:",
               recipesFilterBySuppressUstensiles
             );
-            displayCard(recipesFilterBySuppressUstensiles);
+            render(recipesFilterBySuppressUstensiles);
 
             if (model.tagsUstensiles.length == 0) {
               allRecepies.innerHTML = "";
