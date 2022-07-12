@@ -62,7 +62,6 @@
           ingredient.toLowerCase().includes(searchIngredientValue)
         );
         liList.innerHTML = "";
-
         buildListIngredients(filterIngTag);
         displayTagIng(model.recipes);
         tagSearch(model.recipes);
@@ -245,8 +244,11 @@
                 )
             );
             console.log("model:", model.tagsIngredients);
-            console.log(recipesFilterBySuppressIngredient);
-            displayCard(recipesFilterBySuppressIngredient);
+            console.log(
+              "recipesFilterBySuppressIngredient:",
+              recipesFilterBySuppressIngredient
+            );
+            displayCard(recipesFilterByIngredient);
 
             if (model.tagsIngredients.length == 0) {
               allRecepies.innerHTML = "";
@@ -318,7 +320,7 @@
           if (myIndex !== -1) {
             model.tagsAppareils.splice(myIndex, 1);
             console.log("myIndex:", myIndex);
-            const recipesFilterByAppareils = recipes.filter(
+            const recipesFilterBySuppressAppareils = recipes.filter(
               (recipe) =>
                 recipe.name.toLowerCase().includes(model.tagsAppareils) ||
                 recipe.description
@@ -329,13 +331,15 @@
                 )
             );
             console.log("model:", model.tagsAppareils);
-            console.log(recipesFilterByAppareils);
-            displayCard(recipesFilterByAppareils);
-
+            console.log(
+              "recipesFilterBySuppressAppareils:",
+              recipesFilterBySuppressAppareils
+            );
+            displayCard(recipesFilterBySuppressAppareils);
             if (model.tagsAppareils.length == 0) {
               allRecepies.innerHTML = "";
               get("appareils-list-id").innerHTML = "";
-              displayCard(recipes);
+              displayCard(model.recipes);
             }
           }
           displayAppareils(recipes);
@@ -400,7 +404,7 @@
           if (myIndex !== -1) {
             model.tagsUstensiles.splice(myIndex, 1);
             console.log("myIndex:", myIndex);
-            const recipesFilterByUstensile = recipes.filter(
+            const recipesFilterBySuppressUstensiles = recipes.filter(
               (recipe) =>
                 recipe.name.toLowerCase().includes(model.tagsUstensiles) ||
                 recipe.description
@@ -411,13 +415,16 @@
                 )
             );
             console.log("model:", model.tagsUstensiles);
-            console.log(recipesFilterByUstensile);
-            displayCard(recipesFilterByUstensile);
+            console.log(
+              "recipesFilterBySuppressUstensiles:",
+              recipesFilterBySuppressUstensiles
+            );
+            displayCard(recipesFilterBySuppressUstensiles);
 
             if (model.tagsUstensiles.length == 0) {
               allRecepies.innerHTML = "";
               get("ustensiles-list-id").innerHTML = "";
-              displayCard(recipes);
+              displayCard(model.recipes);
             }
           }
           displayUstensiles(recipes);
