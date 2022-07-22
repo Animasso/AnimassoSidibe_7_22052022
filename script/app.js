@@ -110,9 +110,6 @@
         displayTagAppareil(model.recipes);
         tagSearch(model.recipes);
       }
-      // if(searchIngredientValue.length <= 2){
-      //   displayIngredients(recipes)
-      // }
     });
   }
   function displayUstensiles(recipes) {
@@ -129,9 +126,7 @@
         ustensilesList.push(item.toLowerCase());
       }
     }
-
     let uniqueArrUst = [...new Set(ustensilesList)];
-
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
@@ -140,7 +135,6 @@
   function buildListUstensiles(ustensilesList) {
     const ustensiles = qs(".menuUstensiles");
     //elimination des doublons dans la liste
-
     let uniqueArrUst = [...new Set(ustensilesList)];
 
     for (let k = 0; k < uniqueArrUst.length; k++) {
@@ -172,7 +166,7 @@
     });
   }
 
-  // affichage des tags
+  // affichage des tags ingredients
   function displayTagIng(recipes) {
     const tags = qs(".tags");
     const liIngredients = qsAll(".ingredients");
@@ -264,6 +258,7 @@
       });
     });
   }
+  //affichage et suppression des tags appareils
   function displayTagAppareil(recipes) {
     const tags = qs(".tags");
     const liAppareils = qsAll(".appareils");
@@ -350,6 +345,7 @@
       });
     });
   }
+  //affichage et suppression des tags ustensiles
   function displayTagUstensile(recipes) {
     const tags = qs(".tags");
     const liUstensiles = qsAll(".ustensiles");
@@ -473,81 +469,6 @@
     });
   }
 
-  // Filtrage par tags
-  function tagSearch(recipes) {
-    const liIngredients = qsAll(".ingredients");
-    const liAppareils = qsAll(".appareils");
-    const liUstensiles = qsAll(".ustensiles");
-    const allRecepies = get("recipes-container-id");
-
-    // liIngredients.forEach((element) => {
-    //   element.addEventListener("click", () => {
-    //     //ajouter l ingredient dans model tagsIngrdients puuis vider le dom et le reconstruire avec ce qu il dans model tag ingredient
-    //     allRecepies.innerHTML = "";
-    //     get("ingredient-list-id").innerHTML = "";
-    //     get("appareils-list-id").innerHTML = "";
-    //     get("ustensiles-list-id").innerHTML = "";
-    //     const tagfilterIngredient = recipes.filter(
-    //       (recipe) =>
-    //         recipe.name.toLowerCase().includes(element.dataset.ingredient) ||
-    //         recipe.description
-    //           .toLowerCase()
-    //           .includes(element.dataset.ingredient) ||
-    //         recipe.ingredients.some((el) =>
-    //           el.ingredient.includes(element.dataset.ingredient)
-    //         )
-    //     );
-
-    //     if (tagfilterIngredient.length === 0) {
-    //       allRecepies.innerHTML = "pas de recette trouver";
-    //     }
-    //     render(tagfilterIngredient);
-    //   });
-    // });
-    // liIngredients.forEach((element) => {
-    //   element.addEventListener("click", (e) => {
-    //   ajouter l ingredient dans model tagsIngrdients puuis vider le dom et le reconstruire avec ce qu il dans model tag ingredient
-
-    //
-    //   });
-    // });
-
-    // liAppareils.forEach((element) => {
-    //   element.addEventListener("click", () => {
-    //     allRecepies.innerHTML = "";
-    //     get("ingredient-list-id").innerHTML = "";
-    //     get("appareils-list-id").innerHTML = "";
-    //     get("ustensiles-list-id").innerHTML = "";
-    //     const tagfilterAppareil = recipes.filter(
-    //       (recipe) =>
-    //         recipe.name.toLowerCase().includes(element.dataset.ingredient) ||
-    //         recipe.description.toLowerCase().includes(element.dataset.appareil)
-    //     );
-    //     if (tagfilterAppareil.length === 0) {
-    //       allRecepies.innerHTML = "RIEN TROUVER";
-    //     }
-
-    //     render(tagfilterAppareil);
-    //   });
-    // });
-
-    // liUstensiles.forEach((element) => {
-    //   element.addEventListener("click", () => {
-    //     allRecepies.innerHTML = "";
-    //     get("ingredient-list-id").innerHTML = "";
-    //     get("appareils-list-id").innerHTML = "";
-    //     get("ustensiles-list-id").innerHTML = "";
-    //     const tagfilterUstensiles = recipes.filter((recipe) =>
-    //       recipe.description.toLowerCase().includes(element.dataset.ustensile)
-    //     );
-    //     if (tagfilterUstensiles.length === 0) {
-    //       allRecepies.innerHTML = "RIEN TROUVER";
-    //     }
-
-    //     render(tagfilterUstensiles);
-    //   });
-    // });
-  }
   function render(recipes) {
     displayCard(recipes);
     displayIngredients(recipes);
