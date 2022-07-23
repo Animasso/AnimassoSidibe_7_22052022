@@ -38,6 +38,7 @@
         ingredientsList.push(items.toLowerCase());
       }
     }
+    model.ingredients = ingredientsList;
     buildListIngredients(ingredientsList);
   }
   function buildListIngredients(ingredientsList) {
@@ -48,7 +49,6 @@
     for (let k = 0; k < uniqueArr.length; k++) {
       ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
     }
-    model.ingredients = uniqueArr;
   }
   //recherche input ingredient
   function searchIngredient() {
@@ -64,7 +64,6 @@
         liList.innerHTML = "";
         buildListIngredients(filterIngTag);
         displayTagIng(model.recipes);
-        tagSearch(model.recipes);
       }
     });
   }
@@ -74,7 +73,12 @@
     for (let i = 0; i < recipes.length; i++) {
       allAppareils.push(recipes[i].appliance.toLowerCase());
     }
-    buildListAppareils(allAppareils);
+    let uniqueArrApp = [...new Set(allAppareils)];
+
+    for (let k = 0; k < uniqueArrApp.length; k++) {
+      appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
+    }
+    model.appareils = allAppareils;
   }
   function buildListAppareils(allAppareils) {
     const appareils = qs(".menuAppareils");
@@ -83,7 +87,6 @@
     for (let k = 0; k < uniqueArrApp.length; k++) {
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
-    model.appareils = uniqueArrApp;
   }
   //recherche input appareil
   function searchAppareils() {
@@ -102,7 +105,6 @@
         liListApp.innerHTML = "";
         buildListAppareils(filterAppTag);
         displayTagAppareil(model.recipes);
-        tagSearch(model.recipes);
       }
     });
   }
@@ -120,7 +122,11 @@
         ustensilesList.push(item.toLowerCase());
       }
     }
-    buildListUstensiles(ustensilesList);
+    let uniqueArrUst = [...new Set(ustensilesList)];
+    for (let k = 0; k < uniqueArrUst.length; k++) {
+      ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
+    }
+    model.ustensiles = uniqueArrUst;
   }
   function buildListUstensiles(ustensilesList) {
     const ustensiles = qs(".menuUstensiles");
@@ -130,7 +136,6 @@
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
-    model.ustensiles = uniqueArrUst;
   }
   //recherche input ustensile
   function searchUstensile() {
@@ -146,7 +151,6 @@
         liListUstensiles.innerHTML = "";
         buildListUstensiles(filterUstTag);
         displayTagUstensile(model.recipes);
-        tagSearch(model.recipes);
       }
     });
   }
