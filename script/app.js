@@ -38,7 +38,6 @@
         ingredientsList.push(items.toLowerCase());
       }
     }
-    model.ingredients = ingredientsList;
     buildListIngredients(ingredientsList);
   }
   function buildListIngredients(ingredientsList) {
@@ -49,7 +48,9 @@
     for (let k = 0; k < uniqueArr.length; k++) {
       ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
     }
+    model.ingredients = uniqueArr;
   }
+  //recherche input ingredient
   function searchIngredient() {
     const searchIngredientInput = get("ingredients-search");
     //  ajout d'un listener sur l input
@@ -73,12 +74,7 @@
     for (let i = 0; i < recipes.length; i++) {
       allAppareils.push(recipes[i].appliance.toLowerCase());
     }
-    let uniqueArrApp = [...new Set(allAppareils)];
-
-    for (let k = 0; k < uniqueArrApp.length; k++) {
-      appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
-    }
-    model.appareils = allAppareils;
+    buildListAppareils(allAppareils);
   }
   function buildListAppareils(allAppareils) {
     const appareils = qs(".menuAppareils");
@@ -87,7 +83,9 @@
     for (let k = 0; k < uniqueArrApp.length; k++) {
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
+    model.appareils = uniqueArrApp;
   }
+  //recherche input appareil
   function searchAppareils() {
     const searchAppInput = get("appareils-search");
     //  ajout d'un listener sur l input
@@ -122,11 +120,7 @@
         ustensilesList.push(item.toLowerCase());
       }
     }
-    let uniqueArrUst = [...new Set(ustensilesList)];
-    for (let k = 0; k < uniqueArrUst.length; k++) {
-      ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
-    }
-    model.ustensiles = uniqueArrUst;
+    buildListUstensiles(ustensilesList);
   }
   function buildListUstensiles(ustensilesList) {
     const ustensiles = qs(".menuUstensiles");
@@ -136,7 +130,9 @@
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
+    model.ustensiles = uniqueArrUst;
   }
+  //recherche input ustensile
   function searchUstensile() {
     const searchUstensileInput = get("ustensiles-search");
     //  ajout d'un listener sur l input
