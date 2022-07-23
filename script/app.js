@@ -51,7 +51,6 @@
     }
   }
   function searchIngredient() {
-    const menus = qs(".menus");
     const searchIngredientInput = get("ingredients-search");
     //  ajout d'un listener sur l input
     searchIngredientInput.addEventListener("keyup", (e) => {
@@ -90,9 +89,6 @@
     }
   }
   function searchAppareils() {
-    const menus = qs(".menus");
-    // creation d'un tableau vide qui va recevoir tout les ingredients
-
     const searchAppInput = get("appareils-search");
     //  ajout d'un listener sur l input
     searchAppInput.addEventListener("keyup", (e) => {
@@ -142,13 +138,6 @@
     }
   }
   function searchUstensile() {
-    // creation d'un tableau vide qui va recevoir tout les ingredients
-    let arrayUst = [];
-    const listLiUstensiles = qsAll(".ustensiles");
-
-    listLiUstensiles.forEach((element) => {
-      arrayUst.push(element.dataset.ustensile);
-    });
     const searchUstensileInput = get("ustensiles-search");
     //  ajout d'un listener sur l input
     searchUstensileInput.addEventListener("keyup", (e) => {
@@ -474,7 +463,6 @@
     displayIngredients(recipes);
     displayAppareils(recipes);
     displayUstensiles(recipes);
-    tagSearch(recipes);
     searchIngredient();
     searchAppareils();
     searchUstensile();
@@ -486,9 +474,7 @@
     const recipes = await fetchData();
     model.recipes = recipes;
     render(model.recipes);
-    tagSearch(recipes);
     searchRecipes(recipes);
   }
-
   init();
 })();
