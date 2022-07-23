@@ -478,7 +478,6 @@
     displayIngredients(recipes);
     displayAppareils(recipes);
     displayUstensiles(recipes);
-    tagSearch(recipes);
     searchIngredient();
     searchAppareils();
     searchUstensile();
@@ -490,7 +489,6 @@
     const recipes = await fetchData();
     model.recipes = recipes;
     render(model.recipes);
-    tagSearch(recipes);
     searchRecipes(recipes);
   }
 
