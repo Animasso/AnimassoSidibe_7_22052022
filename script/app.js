@@ -486,6 +486,17 @@
           }
         }
         render(recipesArray);
+        if (recipesArray.length === 0) {
+          allRecepies.innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
+        }
+
+        if (valueInput.length <= 2) {
+          allRecepies.innerHTML = "";
+          get("ingredient-list-id").innerHTML = "";
+          get("appareils-list-id").innerHTML = "";
+          get("ustensiles-list-id").innerHTML = "";
+          render(model.recipes);
+        }
       }
       console.timeEnd("loop");
     });
