@@ -105,9 +105,6 @@
         buildListAppareils(filterAppTag);
         displayTagAppareil(model.recipes);
       }
-      // if(searchIngredientValue.length <= 2){
-      //   displayIngredients(recipes)
-      // }
     });
   }
   function displayUstensiles(recipes) {
@@ -203,6 +200,7 @@
               el.ingredient.includes(element.dataset.ingredient)
             )
         );
+        model.recipes = recipesFilterByIngredient;
         console.log("recipesFilterByIngredient:", recipesFilterByIngredient);
         render(recipesFilterByIngredient);
         // push du tag selectionné dans le tableau tagsIgredients
@@ -235,6 +233,7 @@
                   el.ingredient.includes(model.tagsIngredients)
                 )
             );
+            model.recipes = recipesFilterBySuppressIngredient;
             console.log("model:", model.tagsIngredients);
             console.log(
               "recipesFilterBySuppressIngredient:",
@@ -253,10 +252,7 @@
               displayCard(model.recipes);
             }
           }
-          displayIngredients(recipes);
-          displayTagIng(recipes);
-          displayTagAppareil(recipes);
-          displayTagUstensile(recipes);
+          render(recipes);
         });
       });
     });
@@ -301,6 +297,7 @@
               el.ingredient.includes(element.dataset.appareil)
             )
         );
+        model.recipes = recipesFilterByAppareils;
         console.log("recipesFilterByAppareils:", recipesFilterByAppareils);
         render(recipesFilterByAppareils);
         // push du tag selection dans le tableau tagsIgredients
@@ -327,6 +324,7 @@
                   el.ingredient.includes(model.tagsAppareils)
                 )
             );
+            model.recipes = recipesFilterBySuppressAppareils;
             console.log("model:", model.tagsAppareils);
             console.log(
               "recipesFilterBySuppressAppareils:",
@@ -348,10 +346,7 @@
               displayCard(model.recipes);
             }
           }
-          displayAppareils(recipes);
-          displayTagIng(recipes);
-          displayTagAppareil(recipes);
-          displayTagUstensile(recipes);
+          render(recipes);
         });
       });
     });
@@ -392,6 +387,7 @@
               el.ingredient.includes(element.dataset.ustensile)
             )
         );
+        model.recipes = recipesFilterByUstensile;
         console.log("recipesFilterByUstensile:", recipesFilterByUstensile);
         render(recipesFilterByUstensile);
         // push du tag selection dans le tableau tagsIgredients
@@ -420,6 +416,7 @@
                   el.ingredient.includes(model.tagsUstensiles)
                 )
             );
+            model.recipes = recipesFilterBySuppressUstensiles;
             console.log("model:", model.tagsUstensiles);
             console.log(
               "recipesFilterBySuppressUstensiles:",
@@ -439,10 +436,7 @@
               displayCard(model.recipes);
             }
           }
-          displayUstensiles(recipes);
-          displayTagIng(recipes);
-          displayTagAppareil(recipes);
-          displayTagUstensile(recipes);
+          render(recipes);
         });
       });
     });
