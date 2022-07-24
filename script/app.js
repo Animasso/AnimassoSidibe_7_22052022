@@ -50,8 +50,8 @@
       ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
     }
   }
+  //recherche input ingredient
   function searchIngredient() {
-    const menus = qs(".menus");
     const searchIngredientInput = get("ingredients-search");
     //  ajout d'un listener sur l input
     searchIngredientInput.addEventListener("keyup", (e) => {
@@ -64,7 +64,6 @@
         liList.innerHTML = "";
         buildListIngredients(filterIngTag);
         displayTagIng(model.recipes);
-        tagSearch(model.recipes);
       }
     });
   }
@@ -89,10 +88,8 @@
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
   }
+  //recherche input appareil
   function searchAppareils() {
-    const menus = qs(".menus");
-    // creation d'un tableau vide qui va recevoir tout les ingredients
-
     const searchAppInput = get("appareils-search");
     //  ajout d'un listener sur l input
     searchAppInput.addEventListener("keyup", (e) => {
@@ -108,11 +105,7 @@
         liListApp.innerHTML = "";
         buildListAppareils(filterAppTag);
         displayTagAppareil(model.recipes);
-        tagSearch(model.recipes);
       }
-      // if(searchIngredientValue.length <= 2){
-      //   displayIngredients(recipes)
-      // }
     });
   }
   function displayUstensiles(recipes) {
@@ -129,9 +122,7 @@
         ustensilesList.push(item.toLowerCase());
       }
     }
-
     let uniqueArrUst = [...new Set(ustensilesList)];
-
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
@@ -140,21 +131,14 @@
   function buildListUstensiles(ustensilesList) {
     const ustensiles = qs(".menuUstensiles");
     //elimination des doublons dans la liste
-
     let uniqueArrUst = [...new Set(ustensilesList)];
 
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
   }
+  //recherche input ustensile
   function searchUstensile() {
-    // creation d'un tableau vide qui va recevoir tout les ingredients
-    let arrayUst = [];
-    const listLiUstensiles = qsAll(".ustensiles");
-
-    listLiUstensiles.forEach((element) => {
-      arrayUst.push(element.dataset.ustensile);
-    });
     const searchUstensileInput = get("ustensiles-search");
     //  ajout d'un listener sur l input
     searchUstensileInput.addEventListener("keyup", (e) => {
@@ -167,12 +151,11 @@
         liListUstensiles.innerHTML = "";
         buildListUstensiles(filterUstTag);
         displayTagUstensile(model.recipes);
-        tagSearch(model.recipes);
       }
     });
   }
 
-  // affichage des tags
+  // affichage des tags ingredients
   function displayTagIng(recipes) {
     const tags = qs(".tags");
     const liIngredients = qsAll(".ingredients");
@@ -264,6 +247,7 @@
       });
     });
   }
+  //affichage et suppression des tags appareils
   function displayTagAppareil(recipes) {
     const tags = qs(".tags");
     const liAppareils = qsAll(".appareils");
@@ -350,6 +334,7 @@
       });
     });
   }
+  //affichage et suppression des tags ustensiles
   function displayTagUstensile(recipes) {
     const tags = qs(".tags");
     const liUstensiles = qsAll(".ustensiles");
@@ -491,6 +476,5 @@
     render(model.recipes);
     searchRecipes(recipes);
   }
-
   init();
 })();
