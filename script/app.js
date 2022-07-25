@@ -249,10 +249,10 @@
               model.tagsIngredients.length == 0
             ) {
               allRecepies.innerHTML = "";
-              displayCard(model.recipes);
+              render(model.recipes);
             }
           }
-          render(recipes);
+          // render(recipes);
         });
       });
     });
@@ -343,10 +343,10 @@
               get("appareils-list-id").innerHTML = "";
               render(recipesFilterBySuppressAppareils);
               displayTagAppareil(model.appareils);
-              displayCard(model.recipes);
+              render(model.recipes);
             }
           }
-          render(recipes);
+          // render(recipes);
         });
       });
     });
@@ -433,10 +433,10 @@
             ) {
               allRecepies.innerHTML = "";
               get("ustensiles-list-id").innerHTML = "";
-              displayCard(model.recipes);
+              render(model.recipes);
             }
           }
-          render(recipes);
+          // render(recipes);
         });
       });
     });
