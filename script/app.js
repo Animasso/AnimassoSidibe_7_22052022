@@ -46,6 +46,7 @@
     //elimination des doublons dans la liste
     let uniqueArr = [...new Set(ingredientsList)];
     // placer les ingredients dans chaques li
+    ingred.innerHTML = "";
     for (let k = 0; k < uniqueArr.length; k++) {
       ingred.innerHTML += `<li class="ingredients" data-ingredient = ${uniqueArr[k]}>${uniqueArr[k]}</li>`;
     }
@@ -80,7 +81,7 @@
   function buildListAppareils(allAppareils) {
     const appareils = qs(".menuAppareils");
     let uniqueArrApp = [...new Set(allAppareils)];
-
+    appareils.innerHTML = "";
     for (let k = 0; k < uniqueArrApp.length; k++) {
       appareils.innerHTML += `<li class="appareils" data-appareil = ${uniqueArrApp[k]}> ${uniqueArrApp[k]}</li>`;
     }
@@ -121,9 +122,7 @@
         ustensilesList.push(item.toLowerCase());
       }
     }
-
     let uniqueArrUst = [...new Set(ustensilesList)];
-
     model.ustensiles = uniqueArrUst;
     buildListUstensiles(ustensilesList);
   }
@@ -132,7 +131,7 @@
     //elimination des doublons dans la liste
 
     let uniqueArrUst = [...new Set(ustensilesList)];
-
+    ustensiles.innerHTML = "";
     for (let k = 0; k < uniqueArrUst.length; k++) {
       ustensiles.innerHTML += `<li class="ustensiles" data-ustensile = ${uniqueArrUst[k]}>${uniqueArrUst[k]}</li>`;
     }
@@ -479,11 +478,12 @@
         }
 
         if (valueInput.length <= 2) {
+          console.log("true:", valueInput);
           allRecepies.innerHTML = "";
           get("ingredient-list-id").innerHTML = "";
           get("appareils-list-id").innerHTML = "";
           get("ustensiles-list-id").innerHTML = "";
-          render(model.recipes);
+          render(recipes);
         }
       }
       console.timeEnd("loop");
