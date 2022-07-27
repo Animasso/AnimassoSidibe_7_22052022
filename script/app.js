@@ -30,6 +30,7 @@
     for (let i = 0; i < recipes.length; i++) {
       allIngredients.push(recipes[i].ingredients);
     }
+
     //creation d'un tableau avec uniquement les ingredients
     let ingredientsList = [];
     for (let ingredient in allIngredients) {
@@ -69,7 +70,6 @@
     });
   }
   function displayAppareils(recipes) {
-    const appareils = qs(".menuAppareils");
     let allAppareils = [];
     for (let i = 0; i < recipes.length; i++) {
       allAppareils.push(recipes[i].appliance.toLowerCase());
@@ -87,9 +87,6 @@
     }
   }
   function searchAppareils() {
-    const menus = qs(".menus");
-    // creation d'un tableau vide qui va recevoir tout les ingredients
-
     const searchAppInput = get("appareils-search");
     //  ajout d'un listener sur l input
     searchAppInput.addEventListener("keyup", (e) => {
@@ -109,7 +106,6 @@
     });
   }
   function displayUstensiles(recipes) {
-    const ustensiles = qs(".menuUstensiles");
     let allUstensiles = [];
     for (let i = 0; i < recipes.length; i++) {
       allUstensiles.push(recipes[i].ustensils);
@@ -435,7 +431,6 @@
               render(model.recipes);
             }
           }
-          // render(recipes);
         });
       });
     });
@@ -476,15 +471,13 @@
         if (recipesArray.length === 0) {
           allRecepies.innerHTML = `Aucune recette ne correspond à votre critère... Vous pouvez chercher  « tarte aux pommes », « poisson », etc.`;
         }
-
-        if (valueInput.length <= 2) {
-          console.log("true:", valueInput);
-          allRecepies.innerHTML = "";
-          get("ingredient-list-id").innerHTML = "";
-          get("appareils-list-id").innerHTML = "";
-          get("ustensiles-list-id").innerHTML = "";
-          render(recipes);
-        }
+      }
+      if (valueInput.length <= 2) {
+        allRecepies.innerHTML = "";
+        get("ingredient-list-id").innerHTML = "";
+        get("appareils-list-id").innerHTML = "";
+        get("ustensiles-list-id").innerHTML = "";
+        render(recipes);
       }
       console.timeEnd("loop");
     });
